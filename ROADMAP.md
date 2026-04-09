@@ -6,10 +6,12 @@
 
 ## Now in progress
 
-- Glasswing security audit layer — static vulnerability scanning on all generated contracts
+- ~~Glasswing security audit layer~~ ✓ — 12-point vulnerability scanning on all contracts
+- ~~Managed agent orchestration~~ ✓ — event-driven coordination, session lifecycle, hooks
 - Unified Rexhepi Framework — full deployment
 - Consumer Layer — public-facing protocol
 - Local LLM support expansion
+- Distributed agent coordination — remote agent support, cross-node HiveMind
 
 ## Q2 2026
 
