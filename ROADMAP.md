@@ -6,6 +6,7 @@
 
 ## Now in progress
 
+- Glasswing security audit layer — static vulnerability scanning on all generated contracts
 - Unified Rexhepi Framework — full deployment
 - Consumer Layer — public-facing protocol
 - Local LLM support expansion
