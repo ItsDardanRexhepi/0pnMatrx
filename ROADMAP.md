@@ -55,6 +55,21 @@ they are the gate that proves Phase-by-Phase activation is safe.
 
 - **MTRX iOS App** — launch on the App Store. Free. Built by Neo.
 
+  Scope note: the iOS app lives in a **separate repository**
+  (`MTRX-iOS`, not yet public). It is intentionally out of scope for
+  this Python gateway repo. Work that belongs in that repo:
+
+  - Swift / SwiftUI client code and UI assets
+  - APNs (Apple Push Notification service) credentials and signing
+  - TestFlight / App Store CI (Xcode Cloud or fastlane)
+  - In-app purchase / StoreKit integration
+
+  This repo (`0pnMatrx`) ships only the gateway, runtime, and
+  blockchain services that the iOS app talks to over `/chat`,
+  `/chat/stream`, and `/ws`. API contract changes that affect MTRX
+  iOS are flagged in `CHANGELOG.md` so the mobile team can pin the
+  matching gateway version.
+
 ## Post-launch
 
 - Android app
