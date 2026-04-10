@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing - 0pnMatrx</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0a;--bg-surface:#111111;--bg-card:#141414;--bg-hover:#1a1a1a;
+  --green:#00ff41;--green-dim:#00cc33;--green-dark:#003300;
+  --green-glow:0 0 8px rgba(0,255,65,.35);
+  --green-subtle:rgba(0,255,65,.06);
+  --text:#c8c8c8;--text-bright:#e8e8e8;--text-muted:#666;
+  --border:#1e1e1e;--border-green:rgba(0,255,65,.2);
+  --yellow:#ffcc00;--orange:#ff9944;--blue:#4488ff;
+  --radius:10px;--max-w:1100px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'SF Mono','Fira Code','Cascadia Code',monospace;
+  background:var(--bg);color:var(--text);line-height:1.6;
+  min-height:100vh;
+}
+a{text-decoration:none;color:var(--green)}
+a:hover{text-decoration:underline}
+
+/* ── Navigation ── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;
+  background:rgba(10,10,10,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-size:1.1rem;font-weight:700;letter-spacing:2px;
+  color:var(--green);text-shadow:var(--green-glow);
+  text-decoration:none;
+}
+.nav-logo span{color:var(--text-muted);font-weight:400;font-size:.72rem;margin-left:6px;text-shadow:none}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{
+  color:var(--text-muted);text-decoration:none;font-size:.78rem;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--green)}
+.nav-links a.active{color:var(--green)}
+.nav-toggle{display:none;background:none;border:none;color:var(--text);cursor:pointer;font-size:1.3rem;padding:4px}
+
+/* ── Hero ── */
+.hero{
+  text-align:center;padding:72px 24px 56px;
+  background:linear-gradient(180deg,rgba(0,255,65,.03) 0%,transparent 100%);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 500px 300px at 50% 40%,rgba(0,255,65,.04) 0%,transparent 70%);
+}
+.hero h1{
+  font-size:2rem;font-weight:700;color:var(--text-bright);
+  line-height:1.3;margin-bottom:12px;position:relative;
+}
+.hero h1 em{
+  font-style:normal;color:var(--green);text-shadow:var(--green-glow);
+}
+.hero p{
+  font-size:.88rem;color:var(--text-muted);max-width:580px;
+  margin:0 auto;position:relative;
+}
+
+/* ── Section ── */
+.section{padding:64px 24px;max-width:var(--max-w);margin:0 auto}
+.section-title{
+  font-size:1.3rem;font-weight:700;color:var(--text-bright);
+  margin-bottom:8px;text-align:center;
+}
+.section-sub{
+  font-size:.82rem;color:var(--text-muted);text-align:center;
+  margin-bottom:40px;
+}
+.section-bg{background:var(--bg-surface)}
+
+/* ── Pricing Table ── */
+.pricing-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:20px;align-items:start;margin-bottom:32px;
+}
+.price-card{
+  padding:36px 28px;border-radius:var(--radius);
+  background:var(--bg-card);border:1px solid var(--border);
+  position:relative;transition:border-color .3s,transform .2s;
+  text-align:center;
+}
+.price-card:hover{border-color:var(--border-green);transform:translateY(-2px)}
+.price-card.featured{border-color:var(--green-dim)}
+.price-card.featured::before{
+  content:"POPULAR";position:absolute;top:-11px;left:50%;
+  transform:translateX(-50%);
+  padding:3px 14px;border-radius:10px;
+  font-size:.62rem;font-weight:700;letter-spacing:1px;
+  background:var(--green);color:var(--bg);
+}
+.price-tier{font-size:.92rem;font-weight:700;color:var(--text-bright);margin-bottom:8px}
+.price-amount{
+  font-size:2.4rem;font-weight:800;color:var(--green);
+  text-shadow:var(--green-glow);margin-bottom:2px;
+  font-family:'SF Mono','Fira Code',monospace;
+}
+.price-amount sub{font-size:.72rem;color:var(--text-muted);font-weight:400}
+.price-period{font-size:.76rem;color:var(--text-muted);margin-bottom:8px}
+.trial-badge{
+  display:inline-block;padding:4px 12px;border-radius:12px;
+  font-size:.64rem;font-weight:700;letter-spacing:.5px;
+  background:rgba(255,204,0,.12);color:var(--yellow);
+  border:1px solid rgba(255,204,0,.25);margin-bottom:20px;
+}
+.price-features{
+  list-style:none;text-align:left;margin-bottom:28px;
+}
+.price-features li{
+  font-size:.76rem;color:var(--text);
+  padding:7px 0;border-bottom:1px solid rgba(30,30,30,.6);
+  display:flex;align-items:flex-start;gap:8px;
+}
+.price-features li::before{
+  content:">";color:var(--green);font-weight:700;flex-shrink:0;
+}
+.price-features li.highlight{color:var(--text-bright);font-weight:600}
+.price-features li.disabled{opacity:.3}
+.price-features li.disabled::before{content:"-";color:var(--text-muted)}
+.price-btn{
+  display:block;width:100%;padding:12px;
+  border:1px solid var(--green);border-radius:6px;
+  background:transparent;color:var(--green);
+  font-family:inherit;font-size:.82rem;font-weight:600;
+  cursor:pointer;transition:all .2s;text-align:center;
+  text-decoration:none;
+}
+.price-btn:hover{background:var(--green);color:var(--bg);text-decoration:none}
+.price-card.featured .price-btn{
+  background:var(--green);color:var(--bg);
+}
+.price-card.featured .price-btn:hover{background:var(--green-dim)}
+
+/* ── Comparison Table ── */
+.compare-section{
+  padding:48px 24px 64px;max-width:var(--max-w);margin:0 auto;
+}
+.compare-table{
+  width:100%;border-collapse:collapse;font-size:.76rem;
+}
+.compare-table th{
+  padding:12px 16px;text-align:left;
+  background:var(--bg-surface);border-bottom:1px solid var(--border);
+  color:var(--text-bright);font-weight:700;font-size:.72rem;
+  text-transform:uppercase;letter-spacing:.5px;
+}
+.compare-table th:not(:first-child){text-align:center}
+.compare-table td{
+  padding:10px 16px;border-bottom:1px solid rgba(30,30,30,.5);
+  color:var(--text);
+}
+.compare-table td:not(:first-child){text-align:center;color:var(--text-muted)}
+.compare-table td.val{color:var(--text-bright);font-weight:600}
+.compare-table td .check{color:var(--green);font-weight:700}
+.compare-table td .cross{color:var(--text-muted);opacity:.4}
+.compare-table tr.section-row td{
+  background:var(--bg-surface);font-weight:700;color:var(--green-dim);
+  font-size:.68rem;text-transform:uppercase;letter-spacing:1px;
+  padding:10px 16px;border-bottom:1px solid var(--border);
+}
+.compare-table tbody tr:hover td{background:rgba(0,255,65,.02)}
+
+/* ── FAQ ── */
+.faq-grid{max-width:780px;margin:0 auto}
+.faq-item{
+  border-bottom:1px solid var(--border);
+}
+.faq-question{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0;cursor:pointer;user-select:none;
+  font-size:.86rem;font-weight:600;color:var(--text-bright);
+  transition:color .2s;
+}
+.faq-question:hover{color:var(--green)}
+.faq-toggle{
+  font-size:1.1rem;color:var(--text-muted);
+  transition:transform .25s;flex-shrink:0;margin-left:12px;
+}
+.faq-item.open .faq-toggle{transform:rotate(45deg);color:var(--green)}
+.faq-answer{
+  max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;
+  font-size:.82rem;color:var(--text-muted);line-height:1.7;
+}
+.faq-item.open .faq-answer{
+  max-height:200px;padding-bottom:18px;
+}
+
+/* ── Fee Disclosure ── */
+.disclosure{
+  max-width:780px;margin:0 auto;
+  padding:28px 32px;border-radius:var(--radius);
+  background:var(--bg-card);border:1px solid var(--border);
+  display:grid;grid-template-columns:auto 1fr;gap:20px;
+  align-items:center;
+}
+.disclosure-icon{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--green-subtle);border:1px solid var(--border-green);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.disclosure h3{font-size:.92rem;font-weight:700;color:var(--text-bright);margin-bottom:6px}
+.disclosure p{font-size:.78rem;color:var(--text-muted);line-height:1.7}
+
+/* ── Professional Services ── */
+.services-section{
+  padding:64px 24px 80px;
+  background:var(--bg-surface);border-top:1px solid var(--border);
+}
+.services-container{max-width:var(--max-w);margin:0 auto}
+.services-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+}
+.service-card{
+  padding:32px 28px;border-radius:var(--radius);
+  background:var(--bg-card);border:1px solid var(--border);
+  transition:border-color .3s,transform .2s;
+}
+.service-card:hover{border-color:var(--border-green);transform:translateY(-2px)}
+.service-badge{
+  display:inline-block;padding:3px 10px;border-radius:4px;
+  font-size:.62rem;font-weight:700;letter-spacing:.5px;
+  text-transform:uppercase;margin-bottom:14px;
+  background:var(--green-subtle);color:var(--green-dim);
+  border:1px solid var(--border-green);
+}
+.service-card h3{font-size:.95rem;font-weight:700;color:var(--text-bright);margin-bottom:6px}
+.service-price{font-size:1.3rem;font-weight:800;color:var(--green);text-shadow:var(--green-glow);margin-bottom:10px}
+.service-price sub{font-size:.72rem;color:var(--text-muted);font-weight:400}
+.service-card p{font-size:.78rem;color:var(--text-muted);line-height:1.6;margin-bottom:18px}
+.service-link{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 18px;border:1px solid var(--green);border-radius:6px;
+  font-size:.76rem;font-weight:600;color:var(--green);
+  transition:all .2s;text-decoration:none;
+}
+.service-link:hover{background:var(--green);color:var(--bg);text-decoration:none}
+
+/* ── Footer ── */
+.footer{
+  text-align:center;padding:40px 24px;
+  border-top:1px solid var(--border);
+  font-size:.72rem;color:var(--text-muted);
+}
+.footer-links{
+  display:flex;gap:24px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:16px;list-style:none;
+}
+.footer-links a{color:var(--text-muted);font-size:.72rem;transition:color .2s;text-decoration:none}
+.footer-links a:hover{color:var(--green)}
+
+/* ── Animations ── */
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .nav-links{
+    display:none;position:absolute;top:50px;left:0;right:0;
+    flex-direction:column;background:rgba(10,10,10,.96);
+    border-bottom:1px solid var(--border);padding:16px 24px;gap:14px;
+  }
+  .nav-links.open{display:flex}
+  .nav-toggle{display:block}
+  .hero{padding:56px 16px 48px}
+  .hero h1{font-size:1.4rem}
+  .pricing-grid{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}
+  .compare-section{overflow-x:auto}
+  .compare-table{min-width:600px}
+  .disclosure{grid-template-columns:1fr;text-align:center}
+  .disclosure-icon{margin:0 auto}
+  .services-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <a href="/" class="nav-logo">0pnMatrx<span>pricing</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+  <div class="nav-links" id="navLinks">
+    <a href="/">Home</a>
+    <a href="/chat">Chat</a>
+    <a href="/pricing" class="active">Pricing</a>
+    <a href="/audit">Audit</a>
+    <a href="/marketplace">Marketplace</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <h1>Simple, <em>Transparent</em> Pricing</h1>
+  <p>Start free. Upgrade when you need more.</p>
+</header>
+
+<!-- Pricing Cards -->
+<section class="section" id="plans">
+  <div class="pricing-grid">
+
+    <!-- Free -->
+    <div class="price-card">
+      <div class="price-tier">Free</div>
+      <div class="price-amount">$0</div>
+      <div class="price-period">forever</div>
+      <div style="margin-bottom:20px">&nbsp;</div>
+      <ul class="price-features">
+        <li>5 contract conversions / month</li>
+        <li>$5,000 loan volume</li>
+        <li>3 NFT mints / month</li>
+        <li>2 marketplace listings</li>
+        <li>10 governance votes</li>
+        <li>20 API calls / minute</li>
+        <li>20 conversation turns / session</li>
+        <li class="disabled">Dashboard export</li>
+        <li class="disabled">Custom skills</li>
+        <li class="disabled">Early access features</li>
+        <li class="disabled">Team accounts</li>
+      </ul>
+      <a href="/chat" class="price-btn">Start Free</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="price-card featured">
+      <div class="price-tier">Pro</div>
+      <div class="price-amount">$4.99<sub>/mo</sub></div>
+      <div class="price-period">per user</div>
+      <div class="trial-badge">3-Day Free Trial</div>
+      <ul class="price-features">
+        <li class="highlight">100 contract conversions / month</li>
+        <li>$500,000 loan volume</li>
+        <li>50 NFT mints / month</li>
+        <li>25 marketplace listings</li>
+        <li>200 governance votes</li>
+        <li>120 API calls / minute</li>
+        <li>100 conversation turns / session</li>
+        <li>Dashboard export</li>
+        <li>Custom skills</li>
+        <li>Early access features</li>
+        <li class="disabled">Team accounts</li>
+      </ul>
+      <a href="/chat?plan=pro" class="price-btn">Try Pro Free</a>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="price-card">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-amount">$19.99<sub>/mo</sub></div>
+      <div class="price-period">per user</div>
+      <div class="trial-badge">3-Day Free Trial</div>
+      <ul class="price-features">
+        <li class="highlight">Unlimited contract conversions</li>
+        <li class="highlight">Unlimited loan volume</li>
+        <li class="highlight">Unlimited NFT mints</li>
+        <li class="highlight">Unlimited marketplace listings</li>
+        <li class="highlight">Unlimited governance votes</li>
+        <li>600 API calls / minute</li>
+        <li>500 conversation turns / session</li>
+        <li>Team accounts &amp; roles</li>
+        <li>White-label deployment</li>
+        <li>Audit logs &amp; compliance</li>
+        <li>Full API access</li>
+        <li>Priority support (4h SLA)</li>
+      </ul>
+      <a href="/chat?plan=enterprise" class="price-btn">Try Enterprise Free</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Full Comparison Table -->
+<div class="compare-section" id="compare">
+  <h2 class="section-title">Full Feature Comparison</h2>
+  <p class="section-sub">Every feature, every tier, side by side</p>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Free</th>
+        <th>Pro &mdash; $4.99/mo</th>
+        <th>Enterprise &mdash; $19.99/mo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="section-row"><td colspan="4">Usage Limits</td></tr>
+      <tr>
+        <td>Contract conversions</td>
+        <td class="val">5 / month</td>
+        <td class="val">100 / month</td>
+        <td class="val">Unlimited</td>
+      </tr>
+      <tr>
+        <td>Loan volume</td>
+        <td class="val">$5,000</td>
+        <td class="val">$500,000</td>
+        <td class="val">Unlimited</td>
+      </tr>
+      <tr>
+        <td>NFT mints</td>
+        <td class="val">3 / month</td>
+        <td class="val">50 / month</td>
+        <td class="val">Unlimited</td>
+      </tr>
+      <tr>
+        <td>Marketplace listings</td>
+        <td class="val">2</td>
+        <td class="val">25</td>
+        <td class="val">Unlimited</td>
+      </tr>
+      <tr>
+        <td>Governance votes</td>
+        <td class="val">10</td>
+        <td class="val">200</td>
+        <td class="val">Unlimited</td>
+      </tr>
+      <tr>
+        <td>API calls</td>
+        <td class="val">20 / min</td>
+        <td class="val">120 / min</td>
+        <td class="val">600 / min</td>
+      </tr>
+      <tr>
+        <td>Conversation turns</td>
+        <td class="val">20 / session</td>
+        <td class="val">100 / session</td>
+        <td class="val">500 / session</td>
+      </tr>
+
+      <tr class="section-row"><td colspan="4">Features</td></tr>
+      <tr>
+        <td>All 30 blockchain services</td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>3 AI agents (Trinity, Neo, Morpheus)</td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>Dashboard export</td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>Custom skills</td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>Early access features</td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>Team accounts &amp; roles</td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>White-label deployment</td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>Audit logs &amp; compliance</td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>Full API access</td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+
+      <tr class="section-row"><td colspan="4">Support</td></tr>
+      <tr>
+        <td>Community support</td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>Email support</td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="check">&#10003;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+      <tr>
+        <td>Priority support (4h SLA)</td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="cross">&#8212;</span></td>
+        <td><span class="check">&#10003;</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <p class="section-sub">Honest answers to common questions</p>
+  <div class="faq-grid">
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Is Free really free?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Yes, genuinely free forever. No credit card required. The Free tier covers all core functionality including all 30 blockchain services and all three AI agents. You get real usage limits, not a crippled demo. Most individual users never need to upgrade.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        What are platform fees?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Small on-chain fees are applied to certain blockchain transactions. These fees route to the NeoSafe multisig wallet and fund ongoing platform development, infrastructure costs, and security audits. All fees are fully transparent and visible on-chain -- you can verify every transaction yourself.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Can I cancel anytime?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Yes. Cancel from your account settings at any time. You keep full access to your current tier until the end of your billing period. No cancellation fees, no retention flows, no tricks. One click and you are done.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        What happens to my data if I downgrade?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">Your data is never deleted. You retain full read access to everything you created -- contracts, audit reports, conversation history, configurations. Usage limits simply reset to the free tier levels. If you upgrade again later, everything is still there.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Do I need a wallet?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">No. You can use the platform without a wallet for basic features like contract conversion previews, chat, and documentation. Wallet connection is only needed when you want to execute on-chain actions like deploying contracts, minting NFTs, or participating in governance.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Platform Fee Disclosure -->
+<section class="section" style="padding-top:16px">
+  <div class="disclosure">
+    <div class="disclosure-icon">&#128220;</div>
+    <div>
+      <h3>Platform Fee Disclosure</h3>
+      <p>0pnMatrx applies small platform fees on certain on-chain transactions (typically 0.3-1%). These fees are routed directly to the NeoSafe multisig treasury, which is publicly auditable on-chain. Funds cover infrastructure, security audits, and ongoing development. Subscription pricing covers off-chain features like increased rate limits, team management, and priority support. We believe in honest, predictable pricing with no hidden costs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Professional Services -->
+<div class="services-section" id="services">
+  <div class="services-container">
+    <h2 class="section-title">Professional Services</h2>
+    <p class="section-sub">Need more? Our team can help with one-off projects and enterprise needs.</p>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-badge">Security</div>
+        <h3>Glasswing Security Audit</h3>
+        <div class="service-price">$299<sub>+</sub></div>
+        <p>Production-grade automated vulnerability scanning across 12 attack classes. Manual review options available at higher tiers. Get your contracts audited before deployment.</p>
+        <a href="/audit" class="service-link">Learn More &#8594;</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-badge">Development</div>
+        <h3>Smart Contract Conversion</h3>
+        <div class="service-price">$499<sub>+</sub></div>
+        <p>Describe what you need in plain English. We generate a fully audited, gas-optimised, deployment-ready Solidity contract with OpenZeppelin integration and full test coverage.</p>
+        <a href="/services/conversion" class="service-link">Learn More &#8594;</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-badge">Enterprise</div>
+        <h3>Custom Enterprise Solutions</h3>
+        <div class="service-price">Custom</div>
+        <p>Dedicated infrastructure, custom agent training, on-prem deployment, SSO integration, compliance tooling, and SLA-backed support for large organizations.</p>
+        <a href="mailto:enterprise@0pnmatrx.io" class="service-link">Contact Us &#8594;</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <ul class="footer-links">
+    <li><a href="https://github.com/ItsDardanRexhepi/0pnMatrx" target="_blank">GitHub</a></li>
+    <li><a href="/docs">API Docs</a></li>
+    <li><a href="/chat">Chat</a></li>
+    <li><a href="/marketplace">Marketplace</a></li>
+    <li><a href="/audit">Audit</a></li>
+  </ul>
+  <p>&copy; 2026 0pnMatrx. Open source under MIT license.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // ── Mobile nav toggle ──
+  const toggle = document.getElementById("navToggle");
+  const links = document.getElementById("navLinks");
+  toggle.addEventListener("click", ()=> links.classList.toggle("open"));
+  links.querySelectorAll("a").forEach(a=>{
+    a.addEventListener("click", ()=> links.classList.remove("open"));
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll(".faq-item").forEach(item=>{
+    const q = item.querySelector(".faq-question");
+    q.addEventListener("click", ()=>{
+      // Close others
+      document.querySelectorAll(".faq-item.open").forEach(other=>{
+        if(other !== item) other.classList.remove("open");
+      });
+      item.classList.toggle("open");
+    });
+  });
+
+  // ── Fade-in observer ──
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  }, {threshold:0.08});
+
+  document.querySelectorAll(".price-card, .service-card, .faq-item, .disclosure").forEach(el=>{
+    el.style.opacity = "0";
+    el.style.transform = "translateY(16px)";
+    el.style.transition = "opacity .45s ease, transform .45s ease";
+    observer.observe(el);
+  });
+
+})();
+</script>
+</body>
+</html>
