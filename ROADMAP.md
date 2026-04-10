@@ -9,10 +9,30 @@
 - ~~Glasswing security audit layer~~ ✓ — 12-point vulnerability scanning on all contracts
 - ~~Managed agent orchestration~~ ✓ — event-driven coordination, session lifecycle, hooks
 - ~~Contract Conversion pipeline~~ ✓ — pseudocode/Solidity/Vyper → optimised Solidity → audit → compile → on-chain deploy → EAS attestation
+- ~~Subscription tiers~~ ✓ — Free / Pro ($4.99) / Enterprise ($19.99) with Stripe integration, usage tracking, and feature gating
+- ~~Plugin marketplace~~ ✓ — developer plugin store with 90/10 revenue split, submissions, purchases, and download tracking
+- ~~Web interface~~ ✓ — landing, chat, pricing, audit, marketplace, and conversion service pages
+- ~~Professional services~~ ✓ — Glasswing audit ($299+) and contract conversion ($499+) as paid tiers
+- ~~A2A commerce~~ ✓ — agent-to-agent service registry and discovery protocol
+- ~~JavaScript SDK~~ ✓ — `@opnmatrx/sdk` npm package with TypeScript support
+- ~~Social media integration~~ ✓ — Twitter and Discord automated announcements
 - Unified Rexhepi Framework — full deployment
 - Consumer Layer — public-facing protocol
 - Local LLM support expansion
 - Distributed agent coordination — remote agent support, cross-node HiveMind
+
+## Revenue
+
+All revenue flows through the NeoSafe multisig at `0x46fF491D7054A6F500026B3E81f358190f8d8Ec5`.
+
+- **Subscriptions** — Free / Pro ($4.99/mo) / Enterprise ($19.99/mo) via Stripe
+- **On-chain platform fees** — transparent, visible on-chain, disclosed before first transaction
+- **Plugin marketplace** — 10% platform commission (developers keep 90%)
+- **Professional services** — Glasswing audit ($299+), contract conversion ($499+)
+- **Solidity template packs** — DeFi, Creator, Business packs via Gumroad ($49 each, $119 bundle)
+- **Grants** — Base Ecosystem Fund, Ethereum Foundation ESP, Optimism RPGF, Gitcoin Grants
+
+See `docs/MONETIZATION.md` for the full breakdown.
 
 ## Blockchain Activation
 
