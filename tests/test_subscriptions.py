@@ -57,7 +57,7 @@ def fake_db():
 def usage_tracker(fake_db):
     """Provide an initialised UsageTracker."""
     tracker = UsageTracker(fake_db)
-    asyncio.get_event_loop().run_until_complete(tracker.initialize())
+    asyncio.run(tracker.initialize())
     return tracker
 
 
@@ -71,7 +71,7 @@ def feature_gate(fake_db, usage_tracker):
 def sub_store(fake_db):
     """Provide an initialised SubscriptionStore."""
     store = SubscriptionStore(fake_db)
-    asyncio.get_event_loop().run_until_complete(store.initialize())
+    asyncio.run(store.initialize())
     return store
 
 
