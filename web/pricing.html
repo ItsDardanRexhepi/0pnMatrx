@@ -613,6 +613,37 @@ a:hover{text-decoration:underline}
   </div>
 </div>
 
+<!-- Referral Program -->
+<div style="padding:56px 24px;max-width:var(--max-w);margin:0 auto">
+  <div style="background:var(--bg-card);border:1px solid var(--border-green);border-radius:var(--radius);padding:40px;text-align:center">
+    <h2 style="font-size:1.5rem;color:var(--text-bright);margin-bottom:12px">Refer a Friend, Earn Free Months</h2>
+    <p style="color:var(--text);max-width:600px;margin:0 auto 28px;font-size:.88rem;line-height:1.7">
+      Share your referral link with friends. When they subscribe to a paid plan, you both win.
+    </p>
+    <div style="display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
+      <div style="flex:1;min-width:200px;max-width:260px">
+        <div style="font-size:2rem;color:var(--green);margin-bottom:6px">1</div>
+        <div style="font-size:.82rem;color:var(--text-bright);font-weight:600">Share Your Link</div>
+        <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px">Get your unique referral code from your account</div>
+      </div>
+      <div style="flex:1;min-width:200px;max-width:260px">
+        <div style="font-size:2rem;color:var(--green);margin-bottom:6px">2</div>
+        <div style="font-size:.82rem;color:var(--text-bright);font-weight:600">Friend Subscribes</div>
+        <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px">They get an extended trial when they sign up</div>
+      </div>
+      <div style="flex:1;min-width:200px;max-width:260px">
+        <div style="font-size:2rem;color:var(--green);margin-bottom:6px">3</div>
+        <div style="font-size:.82rem;color:var(--text-bright);font-weight:600">You Both Win</div>
+        <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px">1 month free for Pro referrals, 2 months for Enterprise</div>
+      </div>
+    </div>
+    <button onclick="generateReferral()" style="background:var(--green);color:var(--bg);border:none;padding:12px 28px;border-radius:6px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit">
+      Get Your Referral Link
+    </button>
+    <div id="referralResult" style="margin-top:16px;font-size:.82rem;color:var(--green);display:none"></div>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer class="footer">
   <ul class="footer-links">
@@ -621,6 +652,8 @@ a:hover{text-decoration:underline}
     <li><a href="/chat">Chat</a></li>
     <li><a href="/marketplace">Marketplace</a></li>
     <li><a href="/audit">Audit</a></li>
+    <li><a href="/learn">Learn</a></li>
+    <li><a href="/glasswing">Glasswing</a></li>
   </ul>
   <p>&copy; 2026 0pnMatrx. Open source under MIT license.</p>
 </footer>
@@ -658,6 +691,13 @@ a:hover{text-decoration:underline}
       }
     });
   }, {threshold:0.08});
+
+  // ── Referral link generation ──
+  window.generateReferral = function(){
+    const el = document.getElementById("referralResult");
+    el.style.display = "block";
+    el.textContent = "Connect your wallet first to generate a referral code. Use POST /referral/generate with your wallet session.";
+  };
 
   document.querySelectorAll(".price-card, .service-card, .faq-item, .disclosure").forEach(el=>{
     el.style.opacity = "0";
