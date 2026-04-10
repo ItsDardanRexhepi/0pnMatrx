@@ -16,6 +16,15 @@
 - ~~A2A commerce~~ ✓ — agent-to-agent service registry and discovery protocol
 - ~~JavaScript SDK~~ ✓ — `@opnmatrx/sdk` npm package with TypeScript support
 - ~~Social media integration~~ ✓ — Twitter and Discord automated announcements
+- ~~GitHub Sponsors infrastructure~~ ✓ — FUNDING.yml, sponsor tiers ($5-$2,500/mo), activation guide
+- ~~Open Collective infrastructure~~ ✓ — corporate sponsor tiers ($500-$5,000/mo), transparent fund allocation
+- ~~Referral program~~ ✓ — referral codes, credit granting, self-referral prevention, conversion tracking
+- ~~Metered API pricing~~ ✓ — Growth/Scale/Infrastructure tiers with overage billing above Enterprise
+- ~~Protocol referral fees~~ ✓ — Uniswap V3 interface fees, Aave referrals, 1inch referrals to NeoSafe
+- ~~Glasswing security badges~~ ✓ — verifiable audit badges with EAS attestation, embeddable widget, annual renewal
+- ~~Certification program~~ ✓ — Developer ($149), Auditor ($249), Enterprise Architect ($399) with real exams
+- ~~Educational content~~ ✓ — three courses (Intro, Security, DeFi), Gumroad listings, community guide
+- ~~Revenue dashboard~~ ✓ — admin MRR/ARR tracking across all 14 revenue streams
 - Unified Rexhepi Framework — full deployment
 - Consumer Layer — public-facing protocol
 - Local LLM support expansion
@@ -31,8 +40,16 @@ All revenue flows through the NeoSafe multisig at `0x46fF491D7054A6F500026B3E81f
 - **Professional services** — Glasswing audit ($299+), contract conversion ($499+)
 - **Solidity template packs** — DeFi, Creator, Business packs via Gumroad ($49 each, $119 bundle)
 - **Grants** — Base Ecosystem Fund, Ethereum Foundation ESP, Optimism RPGF, Gitcoin Grants
+- **GitHub Sponsors** — individual tiers $5-$2,500/mo
+- **Open Collective** — corporate tiers $500-$5,000/mo with invoices and tax receipts
+- **Referral program** — free months for referrers, extended trials for referred users
+- **Metered API** — Growth ($49.99) / Scale ($199.99) / Infrastructure ($499.99) with overage
+- **Protocol referrals** — Uniswap, Aave, 1inch integrator fees routed to NeoSafe
+- **Glasswing badges** — $99/year renewal for verified security badges
+- **Certifications** — Developer ($149) / Auditor ($249) / Enterprise Architect ($399)
+- **Educational content** — three Gumroad courses ($49-$79 each, $149 bundle)
 
-See `docs/MONETIZATION.md` for the full breakdown.
+14 total revenue streams. See `docs/REVENUE_STREAMS.md` for the complete mapping.
 
 ## Blockchain Activation
 
