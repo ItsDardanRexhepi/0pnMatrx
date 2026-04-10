@@ -59,7 +59,7 @@ def fake_db():
 def manager(fake_db):
     """Provide an initialised ReferralManager."""
     mgr = ReferralManager(fake_db)
-    asyncio.get_event_loop().run_until_complete(mgr.initialize())
+    asyncio.run(mgr.initialize())
     return mgr
 
 
