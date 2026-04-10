@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTRX Product Hunt Gallery Images</title>
+<style>
+body {
+  background: #1a1a1a;
+  color: #ccc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 40px;
+  margin: 0;
+}
+.instructions {
+  max-width: 1300px;
+  margin: 0 auto 40px;
+  background: #2a2a00;
+  border: 1px solid #555500;
+  border-radius: 8px;
+  padding: 20px 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cccc66;
+}
+.instructions strong { color: #ffff66; }
+h1 {
+  text-align: center;
+  font-size: 28px;
+  color: #00ff41;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  margin-bottom: 10px;
+}
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.image-label {
+  font-size: 13px;
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Product Hunt image: 1270x760 */
+.ph-image {
+  width: 1270px;
+  height: 760px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Image 1: Platform Overview ── */
+.img1 {
+  background: linear-gradient(135deg, #050505 0%, #0a0a0a 40%, #0d1a0d 100%);
+}
+.img1-content {
+  text-align: center;
+  max-width: 900px;
+  padding: 60px;
+}
+.img1-logo {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 72px;
+  font-weight: 900;
+  color: #00ff41;
+  letter-spacing: 8px;
+  text-shadow: 0 0 40px rgba(0,255,65,.3), 0 0 80px rgba(0,255,65,.1);
+  margin-bottom: 24px;
+}
+.img1-headline {
+  font-size: 36px;
+  font-weight: 300;
+  color: #e8e8e8;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.img1-headline em { color: #00ff41; font-style: normal; font-weight: 700; }
+.img1-sub {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 40px;
+}
+.img1-stats {
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+}
+.img1-stat {
+  text-align: center;
+}
+.img1-stat-num {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 42px;
+  font-weight: 800;
+  color: #00ff41;
+  text-shadow: 0 0 20px rgba(0,255,65,.3);
+}
+.img1-stat-label {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* Matrix rain decoration */
+.img1::before {
+  content: "01001 10110 01010 11001 00101 10011 01110 10001 01011 10100";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'SF Mono', monospace;
+  font-size: 12px;
+  color: rgba(0,255,65,.08);
+  letter-spacing: 4px;
+  word-spacing: 20px;
+}
+.img1::after {
+  content: "10110 01001 11010 00110 10101 01100 11001 01010 10011 01101";
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'SF Mono', monospace;
+  font-size: 12px;
+  color: rgba(0,255,65,.08);
+  letter-spacing: 4px;
+  word-spacing: 20px;
+}
+
+/* ── Image 2: Trinity Chat ── */
+.img2 {
+  background: #0a0a0a;
+  flex-direction: row;
+  padding: 40px 60px;
+  gap: 50px;
+}
+.img2-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.img2-title {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 14px;
+  color: #00ff41;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.img2-headline {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e8e8e8;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.img2-desc {
+  font-size: 16px;
+  color: #888;
+  line-height: 1.6;
+}
+.img2-right {
+  width: 520px;
+  flex-shrink: 0;
+}
+.img2-chat {
+  background: #0e0e0e;
+  border: 1px solid #1e1e1e;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.img2-msg {
+  padding: 12px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.img2-user {
+  background: #1a3a1a;
+  border: 1px solid #003b00;
+  color: #c8c8c8;
+  align-self: flex-end;
+  max-width: 80%;
+}
+.img2-agent {
+  background: #141414;
+  border: 1px solid #1e1e1e;
+  color: #c8c8c8;
+  max-width: 90%;
+}
+.img2-agent-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #00ff41;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+/* ── Image 3: Tiers ── */
+.img3 {
+  background: linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
+  padding: 50px 60px;
+  flex-direction: column;
+}
+.img3-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #e8e8e8;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.img3-cards {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  max-width: 1100px;
+}
+.img3-card {
+  flex: 1;
+  background: #0e0e0e;
+  border: 1px solid #1e1e1e;
+  border-radius: 16px;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+}
+.img3-card.featured {
+  border-color: #00ff41;
+  box-shadow: 0 0 30px rgba(0,255,65,.1);
+  position: relative;
+}
+.img3-card.featured::before {
+  content: "MOST POPULAR";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00ff41;
+  color: #0a0a0a;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 16px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+.img3-plan-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e8e8e8;
+  margin-bottom: 8px;
+}
+.img3-price {
+  font-size: 36px;
+  font-weight: 800;
+  color: #00ff41;
+  margin-bottom: 4px;
+}
+.img3-price span { font-size: 16px; color: #555; font-weight: 400; }
+.img3-period { font-size: 13px; color: #444; margin-bottom: 20px; }
+.img3-features {
+  font-size: 13px;
+  color: #888;
+  line-height: 2;
+  flex: 1;
+}
+.img3-features .check { color: #00ff41; margin-right: 8px; }
+.img3-btn {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+.img3-btn-outline { border: 1px solid #333; color: #888; }
+.img3-btn-green { background: #00ff41; color: #0a0a0a; }
+.img3-btn-dim { border: 1px solid #00ff41; color: #00ff41; }
+
+/* ── Image 4: Three Agents ── */
+.img4 {
+  background: #0a0a0a;
+  padding: 50px 60px;
+  flex-direction: column;
+}
+.img4-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #e8e8e8;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.img4-subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.img4-agents {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  max-width: 1100px;
+}
+.img4-agent {
+  flex: 1;
+  background: #0e0e0e;
+  border: 1px solid #1e1e1e;
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+}
+.img4-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+.img4-trinity .img4-icon { background: rgba(0,255,65,.1); border: 2px solid #00ff41; }
+.img4-neo .img4-icon { background: rgba(65,105,225,.1); border: 2px solid royalblue; }
+.img4-morpheus .img4-icon { background: rgba(255,165,0,.1); border: 2px solid orange; }
+.img4-name {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+  letter-spacing: 2px;
+}
+.img4-trinity .img4-name { color: #00ff41; }
+.img4-neo .img4-name { color: royalblue; }
+.img4-morpheus .img4-name { color: orange; }
+.img4-role {
+  font-size: 12px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.img4-desc {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.6;
+}
+
+/* ── Image 5: Mission ── */
+.img5 {
+  background: linear-gradient(135deg, #050505 0%, #0a0a0a 50%, #0d1a0d 100%);
+  flex-direction: column;
+  padding: 60px;
+  text-align: center;
+}
+.img5-quote {
+  font-size: 36px;
+  font-weight: 300;
+  color: #e8e8e8;
+  max-width: 800px;
+  line-height: 1.4;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+.img5-quote em { color: #00ff41; font-style: normal; font-weight: 600; }
+.img5-stats {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 40px;
+}
+.img5-stat-num {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 48px;
+  font-weight: 900;
+  color: #00ff41;
+  text-shadow: 0 0 20px rgba(0,255,65,.3);
+}
+.img5-stat-label {
+  font-size: 12px;
+  color: #555;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.img5-bottom {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.img5-badge {
+  padding: 8px 20px;
+  border: 1px solid #1e1e1e;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #888;
+}
+.img5-badge .g { color: #00ff41; }
+.img5-footer {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #444;
+}
+.img5-footer a { color: #00ff41; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<h1>MTRX Product Hunt Gallery</h1>
+<p class="subtitle">1270 x 760px -- 5 images for Product Hunt submission</p>
+
+<div class="instructions">
+  <strong>How to capture:</strong> Open this file in Chrome at 100% zoom. Screenshot each bordered image individually. Save as PNG at 1270x760. Upload to Product Hunt gallery in order (Image 1 first = thumbnail).
+</div>
+
+<div class="gallery">
+
+<!-- ═══════════════ Image 1: Platform Overview ═══════════════ -->
+<div class="image-wrapper">
+  <div class="image-label">Image 1 -- Thumbnail / Overview</div>
+  <div class="ph-image img1">
+    <div class="img1-content">
+      <div class="img1-logo">MTRX</div>
+      <div class="img1-headline"><em>30</em> blockchain services. <em>One</em> conversation.</div>
+      <div class="img1-sub">The free, open-source AI agent platform for everything on-chain.</div>
+      <div class="img1-stats">
+        <div class="img1-stat">
+          <div class="img1-stat-num">30</div>
+          <div class="img1-stat-label">Services</div>
+        </div>
+        <div class="img1-stat">
+          <div class="img1-stat-num">3</div>
+          <div class="img1-stat-label">AI Agents</div>
+        </div>
+        <div class="img1-stat">
+          <div class="img1-stat-num">329</div>
+          <div class="img1-stat-label">Tests</div>
+        </div>
+        <div class="img1-stat">
+          <div class="img1-stat-num">$0</div>
+          <div class="img1-stat-label">Gas Fees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ Image 2: Trinity Chat ═══════════════ -->
+<div class="image-wrapper">
+  <div class="image-label">Image 2 -- Trinity Conversation</div>
+  <div class="ph-image img2">
+    <div class="img2-left">
+      <div class="img2-title">Meet Trinity</div>
+      <div class="img2-headline">Just tell her what you need. She handles the blockchain.</div>
+      <div class="img2-desc">No wallet setup. No seed phrases. No gas fees. Trinity translates your words into on-chain operations -- from DeFi loans to smart contract deployment.</div>
+    </div>
+    <div class="img2-right">
+      <div class="img2-chat">
+        <div class="img2-msg img2-user">I want to lend $5,000 USDC and earn interest</div>
+        <div class="img2-msg img2-agent">
+          <div class="img2-agent-name">TRINITY</div>
+          I found the best rate for you: Aave v3 on Base is offering 4.2% APY on USDC deposits right now.<br><br>
+          I'll deposit your $5,000 USDC into the lending pool. You'll earn approximately $17.50/month in interest, paid continuously.<br><br>
+          Shall I proceed? You can withdraw anytime.
+        </div>
+        <div class="img2-msg img2-user">Yes, do it</div>
+        <div class="img2-msg img2-agent">
+          <div class="img2-agent-name">TRINITY</div>
+          Done. $5,000 USDC deposited. Gas: $0.00 (sponsored). You're now earning 4.2% APY.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ Image 3: Pricing Tiers ═══════════════ -->
+<div class="image-wrapper">
+  <div class="image-label">Image 3 -- Subscription Tiers</div>
+  <div class="ph-image img3">
+    <div class="img3-title">Start Free. Upgrade When You're Ready.</div>
+    <div class="img3-cards">
+      <div class="img3-card">
+        <div class="img3-plan-name">Free</div>
+        <div class="img3-price">$0</div>
+        <div class="img3-period">Free forever</div>
+        <div class="img3-features">
+          <span class="check">&#10003;</span> All 30 services<br>
+          <span class="check">&#10003;</span> 10 contract conversions/mo<br>
+          <span class="check">&#10003;</span> 5 NFT mints/mo<br>
+          <span class="check">&#10003;</span> Basic dashboard<br>
+          <span class="check">&#10003;</span> Community support
+        </div>
+        <div class="img3-btn img3-btn-outline">Current Plan</div>
+      </div>
+      <div class="img3-card featured">
+        <div class="img3-plan-name">Pro</div>
+        <div class="img3-price">$4.99<span>/mo</span></div>
+        <div class="img3-period">3-day free trial</div>
+        <div class="img3-features">
+          <span class="check">&#10003;</span> 100 conversions/mo<br>
+          <span class="check">&#10003;</span> 50 NFT mints/mo<br>
+          <span class="check">&#10003;</span> $500K DeFi volume<br>
+          <span class="check">&#10003;</span> Dashboard export<br>
+          <span class="check">&#10003;</span> Priority support
+        </div>
+        <div class="img3-btn img3-btn-green">Start Free Trial</div>
+      </div>
+      <div class="img3-card">
+        <div class="img3-plan-name">Enterprise</div>
+        <div class="img3-price">$19.99<span>/mo</span></div>
+        <div class="img3-period">3-day free trial</div>
+        <div class="img3-features">
+          <span class="check">&#10003;</span> Unlimited everything<br>
+          <span class="check">&#10003;</span> Team accounts<br>
+          <span class="check">&#10003;</span> White-label branding<br>
+          <span class="check">&#10003;</span> API access + webhooks<br>
+          <span class="check">&#10003;</span> Dedicated support
+        </div>
+        <div class="img3-btn img3-btn-dim">Start Free Trial</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ Image 4: Three Agents ═══════════════ -->
+<div class="image-wrapper">
+  <div class="image-label">Image 4 -- The Three Agents</div>
+  <div class="ph-image img4">
+    <div class="img4-title">Three Agents. One Platform.</div>
+    <div class="img4-subtitle">Each agent has a different role in helping you navigate blockchain.</div>
+    <div class="img4-agents">
+      <div class="img4-agent img4-trinity">
+        <div class="img4-icon">&#128172;</div>
+        <div class="img4-name">TRINITY</div>
+        <div class="img4-role">Conversational Interface</div>
+        <div class="img4-desc">Your primary point of contact. Trinity translates plain English into blockchain operations, explains results, and remembers your preferences across sessions.</div>
+      </div>
+      <div class="img4-agent img4-neo">
+        <div class="img4-icon">&#9881;</div>
+        <div class="img4-name">NEO</div>
+        <div class="img4-role">Execution Engine</div>
+        <div class="img4-desc">The autonomous operator. Neo executes blockchain transactions, manages smart contracts, monitors positions, and handles the technical complexity behind the scenes.</div>
+      </div>
+      <div class="img4-agent img4-morpheus">
+        <div class="img4-icon">&#128161;</div>
+        <div class="img4-name">MORPHEUS</div>
+        <div class="img4-role">High-Stakes Guidance</div>
+        <div class="img4-desc">Your safety net. Morpheus intervenes on high-risk operations, explains potential consequences, and ensures you understand before committing to major decisions.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ Image 5: Mission Statement ═══════════════ -->
+<div class="image-wrapper">
+  <div class="image-label">Image 5 -- Mission / Closing</div>
+  <div class="ph-image img5">
+    <div class="img5-quote">"Built by the <em>people</em>, for the <em>people</em>."</div>
+    <div class="img5-stats">
+      <div>
+        <div class="img5-stat-num">30</div>
+        <div class="img5-stat-label">Services</div>
+      </div>
+      <div>
+        <div class="img5-stat-num">329+</div>
+        <div class="img5-stat-label">Tests Passing</div>
+      </div>
+      <div>
+        <div class="img5-stat-num">MIT</div>
+        <div class="img5-stat-label">Licensed</div>
+      </div>
+      <div>
+        <div class="img5-stat-num">Free</div>
+        <div class="img5-stat-label">Forever</div>
+      </div>
+    </div>
+    <div class="img5-bottom">
+      <div class="img5-badge"><span class="g">&#10003;</span> No token</div>
+      <div class="img5-badge"><span class="g">&#10003;</span> No gas fees</div>
+      <div class="img5-badge"><span class="g">&#10003;</span> No data selling</div>
+      <div class="img5-badge"><span class="g">&#10003;</span> Open source</div>
+      <div class="img5-badge"><span class="g">&#10003;</span> Privacy first</div>
+    </div>
+    <div class="img5-footer">
+      <a>openmatrix.io</a> &middot; <a>github.com/ItsDardanRexhepi/0pnMatrx</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- .gallery -->
+
+</body>
+</html>

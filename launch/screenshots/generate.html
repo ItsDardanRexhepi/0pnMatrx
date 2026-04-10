@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTRX App Store Screenshots</title>
+<style>
+body {
+  background: #1a1a1a;
+  color: #ccc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 40px;
+  margin: 0;
+}
+.instructions {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  background: #2a2a00;
+  border: 1px solid #555500;
+  border-radius: 8px;
+  padding: 20px 24px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cccc66;
+}
+.instructions strong { color: #ffff66; }
+h1 {
+  text-align: center;
+  font-size: 28px;
+  color: #00ff41;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  margin-bottom: 10px;
+}
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+.screenshots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+.screenshot-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.screenshot-label {
+  font-size: 13px;
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.caption {
+  max-width: 393px;
+  text-align: center;
+  font-size: 13px;
+  color: #aaa;
+  font-style: italic;
+}
+
+/* iPhone 15 Pro frame */
+.phone-frame {
+  width: 393px;
+  height: 852px;
+  border-radius: 48px;
+  border: 4px solid #333;
+  background: #0a0a0a;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6), inset 0 0 0 2px #222;
+}
+.phone-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 126px;
+  height: 34px;
+  background: #000;
+  border-radius: 0 0 20px 20px;
+  z-index: 10;
+}
+.screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Shared screen elements */
+.status-bar {
+  height: 54px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 30px 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  flex-shrink: 0;
+}
+.status-bar .time { font-size: 16px; font-weight: 700; }
+.status-bar .icons { display: flex; gap: 6px; font-size: 12px; }
+.app-header {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #1e1e1e;
+  flex-shrink: 0;
+}
+.app-title {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 20px;
+  font-weight: 800;
+  color: #00ff41;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0,255,65,.3);
+}
+.screen-body { flex: 1; overflow: hidden; padding: 0; }
+.tab-bar {
+  height: 80px;
+  background: rgba(10,10,10,.95);
+  border-top: 1px solid #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 10px;
+  flex-shrink: 0;
+}
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: #555;
+}
+.tab-item.active { color: #00ff41; }
+.tab-icon { font-size: 22px; }
+
+/* ── Screenshot 1: Landing ── */
+.s1-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 40px 30px;
+  text-align: center;
+}
+.s1-logo {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 56px;
+  font-weight: 900;
+  color: #00ff41;
+  letter-spacing: 6px;
+  text-shadow: 0 0 30px rgba(0,255,65,.4), 0 0 60px rgba(0,255,65,.15);
+  margin-bottom: 20px;
+}
+.s1-tagline {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+.s1-tagline em { color: #00ff41; font-style: normal; font-weight: 600; }
+.s1-btn {
+  padding: 14px 40px;
+  border: 2px solid #00ff41;
+  border-radius: 12px;
+  color: #00ff41;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0,255,65,.3);
+}
+.s1-subtitle {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #444;
+}
+
+/* ── Screenshot 2: Chat ── */
+.chat-body { padding: 16px 16px 0; flex: 1; overflow: hidden; }
+.chat-msg {
+  margin-bottom: 14px;
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.chat-user {
+  background: #1a3a1a;
+  border: 1px solid #003b00;
+  color: #c8c8c8;
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+.chat-agent {
+  background: #141414;
+  border: 1px solid #1e1e1e;
+  color: #c8c8c8;
+  border-bottom-left-radius: 4px;
+}
+.chat-agent-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #00ff41;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+.chat-input {
+  margin: 12px 0;
+  padding: 12px 16px;
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 20px;
+  color: #555;
+  font-size: 14px;
+}
+
+/* ── Screenshot 3: Services Grid ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 16px;
+}
+.service-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 14px 8px;
+  text-align: center;
+}
+.service-icon { font-size: 24px; margin-bottom: 6px; }
+.service-name { font-size: 10px; color: #888; font-weight: 500; line-height: 1.3; }
+
+/* ── Screenshot 4: Pricing ── */
+.pricing-body { padding: 16px; }
+.pricing-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #e8e8e8;
+}
+.plan-card {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+.plan-card.featured {
+  border-color: #00ff41;
+  box-shadow: 0 0 20px rgba(0,255,65,.1);
+}
+.plan-name { font-size: 16px; font-weight: 700; color: #e8e8e8; }
+.plan-price { font-size: 28px; font-weight: 800; color: #00ff41; margin: 6px 0; }
+.plan-price span { font-size: 14px; color: #555; font-weight: 400; }
+.plan-features { font-size: 12px; color: #888; line-height: 1.8; }
+.plan-btn {
+  display: block;
+  text-align: center;
+  margin-top: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.plan-btn-outline { border: 1px solid #333; color: #888; }
+.plan-btn-green { background: #00ff41; color: #0a0a0a; }
+
+/* ── Screenshot 5: Transaction ── */
+.tx-body { padding: 20px 16px; }
+.tx-status {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.tx-check {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(0,255,65,.1);
+  border: 2px solid #00ff41;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 32px;
+  color: #00ff41;
+}
+.tx-confirmed { font-size: 18px; font-weight: 700; color: #00ff41; }
+.tx-hash { font-size: 11px; color: #555; margin-top: 4px; font-family: monospace; }
+.tx-details {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.tx-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #1a1a1a;
+  font-size: 13px;
+}
+.tx-row:last-child { border-bottom: none; }
+.tx-label { color: #666; }
+.tx-value { color: #e8e8e8; font-weight: 500; }
+.tx-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,255,65,.05);
+  border: 1px solid #003b00;
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+.badge-shield {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.badge-text { font-size: 12px; }
+.badge-title { color: #00ff41; font-weight: 700; font-size: 13px; }
+.badge-sub { color: #555; }
+
+/* ── Screenshot 6: Dashboard ── */
+.dash-body { padding: 16px; }
+.dash-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 16px 0 10px;
+}
+.dash-section-title:first-child { margin-top: 0; }
+.dash-cards { display: flex; gap: 10px; margin-bottom: 4px; }
+.dash-card {
+  flex: 1;
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  padding: 14px 12px;
+}
+.dash-card-label { font-size: 10px; color: #555; margin-bottom: 4px; }
+.dash-card-value { font-size: 20px; font-weight: 800; color: #e8e8e8; }
+.dash-card-value.green { color: #00ff41; }
+.dash-card-change { font-size: 10px; color: #00cc33; margin-top: 2px; }
+.dash-positions {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.dash-pos-header {
+  display: flex;
+  padding: 10px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 1px solid #1e1e1e;
+}
+.dash-pos-row {
+  display: flex;
+  padding: 10px 12px;
+  font-size: 12px;
+  border-bottom: 1px solid #0e0e0e;
+}
+.dash-pos-row:last-child { border-bottom: none; }
+.pos-col { flex: 1; }
+.pos-col.name { color: #e8e8e8; font-weight: 600; }
+.pos-col.value { color: #c8c8c8; text-align: right; }
+.pos-col.change { text-align: right; }
+.pos-up { color: #00cc33; }
+.pos-down { color: #ff4444; }
+.neo-activity {
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  padding: 12px;
+}
+.neo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #0e0e0e;
+  font-size: 12px;
+}
+.neo-item:last-child { border-bottom: none; }
+.neo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00ff41;
+  box-shadow: 0 0 6px rgba(0,255,65,.4);
+  flex-shrink: 0;
+}
+.neo-desc { color: #888; flex: 1; }
+.neo-time { color: #444; font-size: 10px; }
+</style>
+</head>
+<body>
+
+<h1>MTRX App Store Screenshots</h1>
+<p class="subtitle">iPhone 15 Pro (393 x 852px) -- 6 screenshots for App Store submission</p>
+
+<div class="instructions">
+  <strong>How to capture:</strong> Open this file in Chrome. Set zoom to 100%. Use your OS screenshot tool to capture each phone frame individually (crop tightly to the outer border of each frame). Save as PNG. Upload to App Store Connect under "iPhone 6.7-inch Display" (or use Xcode to resize). Each screenshot includes a caption below it -- enter these in the "App Store Screenshot Metadata" section.
+</div>
+
+<div class="screenshots">
+
+<!-- ═══════════════ Screenshot 1: Landing ═══════════════ -->
+<div class="screenshot-wrapper">
+  <div class="screenshot-label">Screenshot 1 of 6</div>
+  <div class="phone-frame">
+    <div class="screen">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <span class="icons">&#9679; &#9679; &#9679;</span>
+      </div>
+      <div class="screen-body s1-body">
+        <div class="s1-logo">MTRX</div>
+        <div class="s1-tagline">
+          Your AI companion for<br>everything on-chain.<br><br>
+          Meet <em>Trinity</em>.<br>She handles the rest.
+        </div>
+        <div class="s1-btn">Get Started -- Free</div>
+        <div class="s1-subtitle">No wallet needed. No gas fees. No catch.</div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">Meet Trinity -- your free AI agent for blockchain</div>
+</div>
+
+<!-- ═══════════════ Screenshot 2: Chat ═══════════════ -->
+<div class="screenshot-wrapper">
+  <div class="screenshot-label">Screenshot 2 of 6</div>
+  <div class="phone-frame">
+    <div class="screen">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <span class="icons">&#9679; &#9679; &#9679;</span>
+      </div>
+      <div class="app-header">
+        <span class="app-title">MTRX</span>
+        <span style="color:#555;font-size:13px;">&#9881;</span>
+      </div>
+      <div class="screen-body chat-body">
+        <div class="chat-msg chat-user">
+          Convert my lease agreement to a smart contract
+        </div>
+        <div class="chat-msg chat-agent">
+          <div class="chat-agent-name">TRINITY</div>
+          I'll convert your lease into a smart contract. I can see this is a 12-month residential lease with monthly payments of $2,400.<br><br>
+          Here's what the contract will handle:<br>
+          &#8226; Monthly rent auto-collection<br>
+          &#8226; Security deposit escrow<br>
+          &#8226; Maintenance request logging<br>
+          &#8226; Automatic late fee calculation<br><br>
+          Running Glasswing audit now...
+        </div>
+        <div class="chat-msg chat-agent">
+          <div class="chat-agent-name">TRINITY</div>
+          Audit complete. No vulnerabilities found. Contract deployed to Base.<br><br>
+          <span style="color:#00ff41;">&#10003; Contract live</span> -- 0 gas fees charged.
+        </div>
+        <div class="chat-input">Ask Trinity anything...</div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">&#128172;</span>Chat</div>
+        <div class="tab-item"><span class="tab-icon">&#9881;</span>Services</div>
+        <div class="tab-item"><span class="tab-icon">&#128202;</span>Dashboard</div>
+        <div class="tab-item"><span class="tab-icon">&#128100;</span>Profile</div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">Convert real documents to smart contracts with one message</div>
+</div>
+
+<!-- ═══════════════ Screenshot 3: Services Grid ═══════════════ -->
+<div class="screenshot-wrapper">
+  <div class="screenshot-label">Screenshot 3 of 6</div>
+  <div class="phone-frame">
+    <div class="screen">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <span class="icons">&#9679; &#9679; &#9679;</span>
+      </div>
+      <div class="app-header">
+        <span class="app-title">MTRX</span>
+        <span style="color:#00ff41;font-size:12px;font-weight:600;">30 SERVICES</span>
+      </div>
+      <div class="screen-body" style="overflow-y:auto;">
+        <div class="services-grid">
+          <div class="service-card"><div class="service-icon">&#128176;</div><div class="service-name">DeFi Lending</div></div>
+          <div class="service-card"><div class="service-icon">&#127912;</div><div class="service-name">NFT Minting</div></div>
+          <div class="service-card"><div class="service-icon">&#128196;</div><div class="service-name">Contract Convert</div></div>
+          <div class="service-card"><div class="service-icon">&#127760;</div><div class="service-name">Cross-Border Pay</div></div>
+          <div class="service-card"><div class="service-icon">&#128737;</div><div class="service-name">Insurance</div></div>
+          <div class="service-card"><div class="service-icon">&#9878;</div><div class="service-name">Governance</div></div>
+          <div class="service-card"><div class="service-icon">&#128200;</div><div class="service-name">Staking</div></div>
+          <div class="service-card"><div class="service-icon">&#128274;</div><div class="service-name">Identity (DID)</div></div>
+          <div class="service-card"><div class="service-icon">&#128081;</div><div class="service-name">IP Royalties</div></div>
+          <div class="service-card"><div class="service-icon">&#127968;</div><div class="service-name">RWA Tokens</div></div>
+          <div class="service-card"><div class="service-icon">&#128178;</div><div class="service-name">Stablecoin</div></div>
+          <div class="service-card"><div class="service-icon">&#128640;</div><div class="service-name">Fundraising</div></div>
+          <div class="service-card"><div class="service-icon">&#128270;</div><div class="service-name">Supply Chain</div></div>
+          <div class="service-card"><div class="service-icon">&#127918;</div><div class="service-name">Gaming</div></div>
+          <div class="service-card"><div class="service-icon">&#9879;</div><div class="service-name">Dispute Resolve</div></div>
+          <div class="service-card"><div class="service-icon">&#128722;</div><div class="service-name">Marketplace</div></div>
+          <div class="service-card"><div class="service-icon">&#128182;</div><div class="service-name">DEX Trading</div></div>
+          <div class="service-card"><div class="service-icon">&#128202;</div><div class="service-name">Dashboard</div></div>
+          <div class="service-card"><div class="service-icon">&#128276;</div><div class="service-name">Attestation</div></div>
+          <div class="service-card"><div class="service-icon">&#127873;</div><div class="service-name">Rewards</div></div>
+          <div class="service-card"><div class="service-icon">&#128179;</div><div class="service-name">Cashback</div></div>
+          <div class="service-card"><div class="service-icon">&#128737;</div><div class="service-name">Privacy</div></div>
+          <div class="service-card"><div class="service-icon">&#128241;</div><div class="service-name">Social Proof</div></div>
+          <div class="service-card"><div class="service-icon">&#128203;</div><div class="service-name">Subscriptions</div></div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item"><span class="tab-icon">&#128172;</span>Chat</div>
+        <div class="tab-item active"><span class="tab-icon">&#9881;</span>Services</div>
+        <div class="tab-item"><span class="tab-icon">&#128202;</span>Dashboard</div>
+        <div class="tab-item"><span class="tab-icon">&#128100;</span>Profile</div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">30 blockchain services -- all free, all through conversation</div>
+</div>
+
+<!-- ═══════════════ Screenshot 4: Pricing ═══════════════ -->
+<div class="screenshot-wrapper">
+  <div class="screenshot-label">Screenshot 4 of 6</div>
+  <div class="phone-frame">
+    <div class="screen">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <span class="icons">&#9679; &#9679; &#9679;</span>
+      </div>
+      <div class="app-header">
+        <span class="app-title">MTRX</span>
+        <span style="color:#555;font-size:13px;">Upgrade</span>
+      </div>
+      <div class="screen-body pricing-body">
+        <div class="pricing-header">Choose Your Plan</div>
+
+        <div class="plan-card">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">$0<span> forever</span></div>
+          <div class="plan-features">
+            &#10003; All 30 services<br>
+            &#10003; 10 contract conversions/mo<br>
+            &#10003; 5 NFT mints/mo<br>
+            &#10003; Community support
+          </div>
+          <div class="plan-btn plan-btn-outline">Current Plan</div>
+        </div>
+
+        <div class="plan-card featured">
+          <div class="plan-name">Pro <span style="font-size:11px;color:#00ff41;font-weight:400;">POPULAR</span></div>
+          <div class="plan-price">$4.99<span>/month</span></div>
+          <div class="plan-features">
+            &#10003; 100 contract conversions/mo<br>
+            &#10003; 50 NFT mints/mo<br>
+            &#10003; $500K DeFi volume<br>
+            &#10003; Dashboard export<br>
+            &#10003; Priority support
+          </div>
+          <div class="plan-btn plan-btn-green">Start 3-Day Free Trial</div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-name">Enterprise</div>
+          <div class="plan-price">$19.99<span>/month</span></div>
+          <div class="plan-features">
+            &#10003; Unlimited everything<br>
+            &#10003; Team accounts<br>
+            &#10003; White-label branding<br>
+            &#10003; API access + webhooks<br>
+            &#10003; Dedicated support
+          </div>
+          <div class="plan-btn plan-btn-outline" style="border-color:#00ff41;color:#00ff41;">Start 3-Day Free Trial</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">Free forever -- upgrade only when you need more</div>
+</div>
+
+<!-- ═══════════════ Screenshot 5: Transaction ═══════════════ -->
+<div class="screenshot-wrapper">
+  <div class="screenshot-label">Screenshot 5 of 6</div>
+  <div class="phone-frame">
+    <div class="screen">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <span class="icons">&#9679; &#9679; &#9679;</span>
+      </div>
+      <div class="app-header">
+        <span class="app-title">MTRX</span>
+        <span style="color:#00ff41;font-size:12px;">Transaction</span>
+      </div>
+      <div class="screen-body tx-body">
+        <div class="tx-status">
+          <div class="tx-check">&#10003;</div>
+          <div class="tx-confirmed">Transaction Confirmed</div>
+          <div class="tx-hash">0x8f3a...e7b2 on Base</div>
+        </div>
+
+        <div class="tx-details">
+          <div class="tx-row">
+            <span class="tx-label">Type</span>
+            <span class="tx-value">Contract Deployment</span>
+          </div>
+          <div class="tx-row">
+            <span class="tx-label">Contract</span>
+            <span class="tx-value">ResidentialLease.sol</span>
+          </div>
+          <div class="tx-row">
+            <span class="tx-label">Network</span>
+            <span class="tx-value">Base (Ethereum L2)</span>
+          </div>
+          <div class="tx-row">
+            <span class="tx-label">Gas Fee</span>
+            <span class="tx-value" style="color:#00ff41;">$0.00 (sponsored)</span>
+          </div>
+          <div class="tx-row">
+            <span class="tx-label">Block</span>
+            <span class="tx-value">#18,432,091</span>
+          </div>
+          <div class="tx-row">
+            <span class="tx-label">Time</span>
+            <span class="tx-value">2.1 seconds</span>
+          </div>
+        </div>
+
+        <div class="tx-badge">
+          <div class="badge-shield">&#128737;&#65039;</div>
+          <div class="badge-text">
+            <div class="badge-title">Glasswing Security Badge</div>
+            <div class="badge-sub">Audit passed -- GLASSWING-2026-0147</div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><span class="tab-icon">&#128172;</span>Chat</div>
+        <div class="tab-item"><span class="tab-icon">&#9881;</span>Services</div>
+        <div class="tab-item"><span class="tab-icon">&#128202;</span>Dashboard</div>
+        <div class="tab-item"><span class="tab-icon">&#128100;</span>Profile</div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">Every contract audited and deployed -- zero gas fees</div>
+</div>
+
+<!-- ═══════════════ Screenshot 6: Dashboard ═══════════════ -->
+<div class="screenshot-wrapper">
+  <div class="screenshot-label">Screenshot 6 of 6</div>
+  <div class="phone-frame">
+    <div class="screen">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <span class="icons">&#9679; &#9679; &#9679;</span>
+      </div>
+      <div class="app-header">
+        <span class="app-title">MTRX</span>
+        <span style="color:#555;font-size:13px;">Dashboard</span>
+      </div>
+      <div class="screen-body dash-body">
+        <div class="dash-section-title">Portfolio</div>
+        <div class="dash-cards">
+          <div class="dash-card">
+            <div class="dash-card-label">Total Value</div>
+            <div class="dash-card-value green">$12,847</div>
+            <div class="dash-card-change">+5.2% this week</div>
+          </div>
+          <div class="dash-card">
+            <div class="dash-card-label">Active Positions</div>
+            <div class="dash-card-value">7</div>
+          </div>
+        </div>
+
+        <div class="dash-section-title">Positions</div>
+        <div class="dash-positions">
+          <div class="dash-pos-header">
+            <span class="pos-col">Asset</span>
+            <span class="pos-col value">Value</span>
+            <span class="pos-col change">24h</span>
+          </div>
+          <div class="dash-pos-row">
+            <span class="pos-col name">ETH Staking</span>
+            <span class="pos-col value">$5,240</span>
+            <span class="pos-col change pos-up">+2.1%</span>
+          </div>
+          <div class="dash-pos-row">
+            <span class="pos-col name">USDC Lending</span>
+            <span class="pos-col value">$3,000</span>
+            <span class="pos-col change pos-up">+0.01%</span>
+          </div>
+          <div class="dash-pos-row">
+            <span class="pos-col name">NFT Collection</span>
+            <span class="pos-col value">$2,450</span>
+            <span class="pos-col change pos-down">-1.3%</span>
+          </div>
+          <div class="dash-pos-row">
+            <span class="pos-col name">Lease Contract</span>
+            <span class="pos-col value">$2,157</span>
+            <span class="pos-col change pos-up">--</span>
+          </div>
+        </div>
+
+        <div class="dash-section-title">Neo Activity</div>
+        <div class="neo-activity">
+          <div class="neo-item">
+            <span class="neo-dot"></span>
+            <span class="neo-desc">Rebalanced staking position</span>
+            <span class="neo-time">2m ago</span>
+          </div>
+          <div class="neo-item">
+            <span class="neo-dot"></span>
+            <span class="neo-desc">Collected USDC interest: $4.12</span>
+            <span class="neo-time">1h ago</span>
+          </div>
+          <div class="neo-item">
+            <span class="neo-dot"></span>
+            <span class="neo-desc">Renewed insurance policy</span>
+            <span class="neo-time">3h ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item"><span class="tab-icon">&#128172;</span>Chat</div>
+        <div class="tab-item"><span class="tab-icon">&#9881;</span>Services</div>
+        <div class="tab-item active"><span class="tab-icon">&#128202;</span>Dashboard</div>
+        <div class="tab-item"><span class="tab-icon">&#128100;</span>Profile</div>
+      </div>
+    </div>
+  </div>
+  <div class="caption">Track your portfolio while Neo works for you in the background</div>
+</div>
+
+</div><!-- .screenshots -->
+
+</body>
+</html>
