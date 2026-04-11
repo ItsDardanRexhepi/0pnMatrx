@@ -26,9 +26,13 @@ SwiftUI components for the **Live Activity** tab in the MTRX iOS app.
 
 ## Integration
 
+Social is **Tab 4** in `MTRXTabView` (Discover, Build, Home, Social, Account). It is already wired — do not add it separately.
+
 ```swift
-// In your tab view:
-SocialFeedView(baseURL: URL(string: "https://your-0pnmatrx-instance.com")!)
+// Already wired in MTRX/App/MTRXTabView.swift as:
+SocialFeedView(baseURL: baseURL)
+    .tabItem { Label("Social", systemImage: "globe") }
+    .tag(Tab.social)
 ```
 
 The view manages its own lifecycle — connects SSE on appear, disconnects on disappear, supports pull-to-refresh and infinite scroll.
