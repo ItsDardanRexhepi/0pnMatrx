@@ -141,7 +141,7 @@ def main() -> None:
 
     print(f"\nNext steps:")
     print(f"  1. Review exported files in {output_dir}/")
-    print(f"  2. Submit via Anthropic fine-tuning API: https://docs.anthropic.com/en/docs/build-with-claude/fine-tuning")
+    print(f"  2. Submit via Anthropic fine-tuning API: https://docs.anthropic.com/en/docs/build-with-anthropic/fine-tuning")
     print(f"  3. Evaluate fine-tuned model against base model on held-out validation set")
 
 
