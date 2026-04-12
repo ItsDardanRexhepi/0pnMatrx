@@ -98,7 +98,7 @@ data/finetuning/
 ## Submitting to the Fine-Tuning API
 
 Follow the Anthropic fine-tuning documentation:
-https://docs.anthropic.com/en/docs/build-with-claude/fine-tuning
+https://docs.anthropic.com/en/docs/build-with-anthropic/fine-tuning
 
 ---
 
