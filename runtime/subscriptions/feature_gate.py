@@ -19,7 +19,6 @@ from typing import Any
 from runtime.subscriptions.tiers import (
     SubscriptionTier,
     TIER_LIMITS,
-    TIER_PRICES,
     FEATURE_DESCRIPTIONS,
     get_limit,
     is_unlimited,
