@@ -1,9 +1,11 @@
 """Subscription tier definitions and limits for 0pnMatrx.
 
-Three tiers gate access to the platform's 30 blockchain services:
-  - FREE  ($0)     — generous limits for personal use
-  - PRO   ($4.99)  — higher limits, priority, early access
-  - ENTERPRISE ($19.99) — unlimited usage, team accounts, API access
+Three tiers gate access to the platform's blockchain services:
+  - FREE       — generous limits for personal use
+  - PRO        — higher limits, priority, early access
+  - ENTERPRISE — unlimited usage, team accounts, API access
+
+# Pricing is defined in the MTRX iOS app
 """
 
 from __future__ import annotations
@@ -44,6 +46,21 @@ TIER_LIMITS: dict[SubscriptionTier, dict] = {
         "api_access": False,
         "priority_support": False,
         "early_access": False,
+        "flash_loans": False,
+        "bridge_per_month": 5,
+        "private_transfers_per_month": 3,
+        "prediction_market_bets_per_month": 10,
+        "decentralized_storage_gb": 0.1,
+        "streaming_payments_active": 3,
+        "rwa_fractional_buy_per_month": 2,
+        "perp_trading": False,
+        "leveraged_positions": False,
+        "ai_model_trading": False,
+        "carbon_credits_per_month": 5,
+        "game_tournaments_per_month": 3,
+        "social_posts_per_month": 20,
+        "zk_proofs_per_month": 5,
+        "compute_jobs_per_month": 3,
     },
     SubscriptionTier.PRO: {
         "contract_conversions_per_month": 100,
@@ -61,6 +78,21 @@ TIER_LIMITS: dict[SubscriptionTier, dict] = {
         "api_access": False,
         "priority_support": False,
         "early_access": True,
+        "flash_loans": False,
+        "bridge_per_month": 50,
+        "private_transfers_per_month": 25,
+        "prediction_market_bets_per_month": 200,
+        "decentralized_storage_gb": 10,
+        "streaming_payments_active": 25,
+        "rwa_fractional_buy_per_month": 20,
+        "perp_trading": False,
+        "leveraged_positions": False,
+        "ai_model_trading": False,
+        "carbon_credits_per_month": 50,
+        "game_tournaments_per_month": 25,
+        "social_posts_per_month": 200,
+        "zk_proofs_per_month": 50,
+        "compute_jobs_per_month": 25,
     },
     SubscriptionTier.ENTERPRISE: {
         "contract_conversions_per_month": -1,
@@ -78,13 +110,22 @@ TIER_LIMITS: dict[SubscriptionTier, dict] = {
         "api_access": True,
         "priority_support": True,
         "early_access": True,
+        "flash_loans": True,
+        "bridge_per_month": -1,
+        "private_transfers_per_month": -1,
+        "prediction_market_bets_per_month": -1,
+        "decentralized_storage_gb": -1,
+        "streaming_payments_active": -1,
+        "rwa_fractional_buy_per_month": -1,
+        "perp_trading": True,
+        "leveraged_positions": True,
+        "ai_model_trading": True,
+        "carbon_credits_per_month": -1,
+        "game_tournaments_per_month": -1,
+        "social_posts_per_month": -1,
+        "zk_proofs_per_month": -1,
+        "compute_jobs_per_month": -1,
     },
-}
-
-TIER_PRICES: dict[SubscriptionTier, float] = {
-    SubscriptionTier.FREE: 0.00,
-    SubscriptionTier.PRO: 4.99,
-    SubscriptionTier.ENTERPRISE: 19.99,
 }
 
 # Human-readable feature descriptions for upgrade messages
@@ -104,6 +145,21 @@ FEATURE_DESCRIPTIONS: dict[str, str] = {
     "api_access": "direct API access",
     "priority_support": "priority support",
     "early_access": "early access to new features",
+    "flash_loans": "flash loans",
+    "bridge_per_month": "cross-chain bridges/month",
+    "private_transfers_per_month": "private transfers/month",
+    "prediction_market_bets_per_month": "prediction market bets/month",
+    "decentralized_storage_gb": "decentralized storage (GB)",
+    "streaming_payments_active": "active payment streams",
+    "rwa_fractional_buy_per_month": "RWA fractional purchases/month",
+    "perp_trading": "perpetual trading",
+    "leveraged_positions": "leveraged positions",
+    "ai_model_trading": "AI model trading",
+    "carbon_credits_per_month": "carbon credit purchases/month",
+    "game_tournaments_per_month": "tournament entries/month",
+    "social_posts_per_month": "on-chain social posts/month",
+    "zk_proofs_per_month": "zero-knowledge proofs/month",
+    "compute_jobs_per_month": "compute jobs/month",
 }
 
 
