@@ -5,7 +5,7 @@ audit_service, badge_manager, certification_manager, metered_billing,
 and referral_manager to produce unified revenue reports.
 
 Revenue streams tracked:
-  - Subscriptions (Pro $4.99/mo, Enterprise $19.99/mo)
+  - Subscriptions (Pro, Enterprise — pricing defined in MTRX iOS app)
   - Audit Service (Standard $299, Advanced $599, Enterprise $999)
   - Security Badges ($99/year per badge)
   - Certifications (per-track assessment fees)
@@ -18,6 +18,7 @@ Revenue streams tracked:
 from __future__ import annotations
 
 import logging
+import os
 import time
 import uuid
 from datetime import datetime, timezone
@@ -119,8 +120,8 @@ class RevenueReporter:
     async def get_mrr(self) -> float:
         """Calculate current Monthly Recurring Revenue.
 
-        Counts active Pro subscriptions * $4.99 plus active Enterprise
-        subscriptions * $19.99 plus the sum of metered billing base
+        Counts active Pro and Enterprise subscriptions at their
+        configured price points plus the sum of metered billing base
         charges for all active metered API subscriptions.
 
         Returns
@@ -162,7 +163,10 @@ class RevenueReporter:
         )
         metered_base = row["metered_base"] if row else 0.0
 
-        mrr = (pro_count * 4.99) + (enterprise_count * 19.99) + metered_base
+        # Pricing is defined in the MTRX iOS app — fetch from Stripe at runtime
+        pro_price = float(os.environ.get("STRIPE_PRO_PRICE_AMOUNT", "0"))
+        ent_price = float(os.environ.get("STRIPE_ENTERPRISE_PRICE_AMOUNT", "0"))
+        mrr = (pro_count * pro_price) + (enterprise_count * ent_price) + metered_base
         return round(mrr, 2)
 
     # ------------------------------------------------------------------

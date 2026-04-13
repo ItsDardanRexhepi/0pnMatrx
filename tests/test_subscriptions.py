@@ -11,7 +11,6 @@ import pytest
 from runtime.subscriptions.tiers import (
     SubscriptionTier,
     TIER_LIMITS,
-    TIER_PRICES,
     get_limit,
     is_unlimited,
 )
@@ -94,11 +93,6 @@ class TestSubscriptionTier:
     def test_from_str_unknown_defaults_to_free(self):
         assert SubscriptionTier.from_str("unknown") == SubscriptionTier.FREE
         assert SubscriptionTier.from_str("") == SubscriptionTier.FREE
-
-    def test_tier_prices(self):
-        assert TIER_PRICES[SubscriptionTier.FREE] == 0.00
-        assert TIER_PRICES[SubscriptionTier.PRO] == 4.99
-        assert TIER_PRICES[SubscriptionTier.ENTERPRISE] == 19.99
 
     def test_all_tiers_have_limits(self):
         for tier in SubscriptionTier:
