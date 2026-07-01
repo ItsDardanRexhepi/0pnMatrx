@@ -5,7 +5,7 @@ The only remaining work is *you* supplying the credentials/accounts below and ru
 the deploy. Nothing here ships with real secrets — every value is an env-var / config
 placeholder. Default network is **Base Sepolia (testnet, chain 84532)**; nothing
 touches mainnet, and the security layer stays in **OBSERVE** until you review it
-(see `Matrix-Security-System/ENFORCEMENT.md`).
+(see `Morpheus-Security-System/ENFORCEMENT.md`).
 
 Status legend used across the final report: **WORKING** (tested, runs) ·
 **CREDENTIAL-GATED** (code complete, needs the secret to function) · **UNVERIFIED**
@@ -19,7 +19,7 @@ Status legend used across the final report: **WORKING** (tested, runs) ·
 |---|---|---|
 | `MTRX` (iOS app) | private | `Config/PendingCredentials.swift` (all blank by default) |
 | `0pnMatrx` (platform) | public | `openmatrix.config.json` (copy from `.example`) + env vars |
-| `Matrix-Security-System` (security core) | private | env vars only (never committed) |
+| `Morpheus-Security-System` (security core) | private | env vars only (never committed) |
 
 ---
 
@@ -79,7 +79,7 @@ Set under `services.<name>.*` in `openmatrix.config.json`. Each service returns 
 | ccip | `services.ccip.router_address` (Base Sepolia CCIP router) + per-bridge addresses | CCIP/Hyperlane/Wormhole/Axelar/Stargate |
 | auctions | `services.auctions.auction_address` + `.orderbook_address` | Dutch/English/sealed-bid + orderbook |
 
-## 5. Security layer (private `Matrix-Security-System`) — env only, never committed
+## 5. Security layer (private `Morpheus-Security-System`) — env only, never committed
 
 | Credential | Env var | Unlocks |
 |---|---|---|
@@ -96,7 +96,7 @@ Set under `services.<name>.*` in `openmatrix.config.json`. Each service returns 
 
 | Credential | Where | Unlocks |
 |---|---|---|
-| Deploy key / fine-grained PAT with read on `Matrix-Security-System` | deploy CI / image build | `pip install git+ssh://…/Matrix-Security-System` so the seam binds real enforcement. Absent → platform runs with `SECURITY_BACKEND=noop` (safe, inert). See `Matrix-Security-System/DEPLOY_ASSEMBLY.md`. |
+| Deploy key / fine-grained PAT with read on `Morpheus-Security-System` | deploy CI / image build | `pip install git+ssh://…/Morpheus-Security-System` so the seam binds real enforcement. Absent → platform runs with `SECURITY_BACKEND=noop` (safe, inert). See `Morpheus-Security-System/DEPLOY_ASSEMBLY.md`. |
 
 ## 7. Per-component contract addresses (app) — fill AFTER `deploy_all.py`
 
@@ -115,9 +115,9 @@ The full chain is wired in code: **app → gateway → agent → dispatcher → 
 gate → tool → chain**. To exercise it end-to-end on Base Sepolia:
 
 1. **Install both layers together** (per `DEPLOY_ASSEMBLY.md`): check out `0pnMatrx`,
-   then `pip install -e .` of `Matrix-Security-System` alongside it (deploy key).
+   then `pip install -e .` of `Morpheus-Security-System` alongside it (deploy key).
    Confirm `python -c "import runtime.security as s; print(s.SECURITY_BACKEND)"`
-   prints `matrix_security` (not `noop`).
+   prints `morpheus_security` (not `noop`).
 2. **Set the env** (sections 1, 3, 5): RPC, chain 84532, deploy key, platform wallet,
    `ANTHROPIC_API_KEY`, `OPENMATRIX_API_KEY`, owner + Twilio. Keep
    `OPNMATRX_MORPHEUS_MODE=observe`.
