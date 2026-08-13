@@ -98,6 +98,24 @@ Set under `services.<name>.*` in `openmatrix.config.json`. Each service returns 
 |---|---|---|
 | Deploy key / fine-grained PAT with read on `Morpheus-Security-System` | deploy CI / image build | `pip install git+ssh://…/Morpheus-Security-System` so the seam binds real enforcement. Absent → platform runs with `SECURITY_BACKEND=noop` (safe, inert). See `Morpheus-Security-System/DEPLOY_ASSEMBLY.md`. |
 
+## 6b. Per-deployment secrets that have a WORKING DEFAULT — set these or they hold
+
+**These are the dangerous ones**, because nothing fails when you skip them. A
+credential you forget usually announces itself: a feature returns "needs config"
+and you go and set it. A secret with a working default does not — the feature
+functions, no test fails, no log complains, and the value protecting it is the
+one printed in a public repository.
+
+| Credential | Set in | Default if unset | Why it matters |
+|---|---|---|---|
+| **QR verification secret** | platform `supply_chain.qr_secret` | `"0pnmatrx-default-qr-secret"` — **published in this public repo** | The entire secret in the product-authenticity hash (`qr_codes.py:200`, `sha256(product_id\|timestamp\|qr_secret)`). Left unset, **anyone who can read this repository can forge a valid product verification hash for any product id.** Set it to a long random per-deployment value. |
+
+**DEPLOYMENT PREREQUISITE — ordering matters, as it did for `blockchain.eas_schema`.**
+Set `supply_chain.qr_secret` **before** issuing any product QR code you intend to
+treat as authoritative. Codes minted under the default remain forgeable after you
+rotate the secret — rotating invalidates them rather than repairing them, so
+anything already in circulation must be re-issued.
+
 ## 8. Sign in with Apple — server credentials (P1-8)
 
 | Credential | Where | Unlocks |
