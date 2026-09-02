@@ -1,0 +1,17 @@
+{
+  "name": "0pnMatrx",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "gateway",
+      "command": "source .venv/bin/activate && python -m gateway.server",
+      "description": "0pnMatrx gateway (REST + WebSocket) on http://localhost:18790 — /health, /status, /chat, /api/v1/capabilities"
+    }
+  ],
+  "ports": [
+    {
+      "name": "gateway",
+      "port": 18790
+    }
+  ]
+}
