@@ -16,7 +16,7 @@ readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.9"
 authors = [
-    { name = "Neo", email = "neo@openmatrix-ai.com" },
+    { name = "Dardan Rexhepi", email = "dardanr510@gmail.com" },
 ]
 keywords = ["blockchain", "agents", "react", "sqlite", "gateway"]
 classifiers = [
