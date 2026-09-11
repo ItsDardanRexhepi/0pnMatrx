@@ -78,5 +78,5 @@ jobs:
           branch: chore/changelog-${{ steps.version.outputs.label }}
           base: main
           delete-branch: true
-          author: "Neo <neo@openmatrix-ai.com>"
-          committer: "Neo <neo@openmatrix-ai.com>"
+          author: "Neo <dardanr510@gmail.com>"
+          committer: "Neo <dardanr510@gmail.com>"
