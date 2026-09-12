@@ -1,11 +1,12 @@
 # CREDENTIALS_NEEDED — the owner's go-live checklist
 
-Everything in the three repos is built to a **credential-ready, deploy-ready** point.
+Everything in this repository and its private deployment counterparts is built to a
+**credential-ready, deploy-ready** point.
 The only remaining work is *you* supplying the credentials/accounts below and running
 the deploy. Nothing here ships with real secrets — every value is an env-var / config
 placeholder. Default network is **Base Sepolia (testnet, chain 84532)**; nothing
 touches mainnet, and the security layer stays in **OBSERVE** until you review it
-(see `Morpheus-Security-System/ENFORCEMENT.md`).
+(the enforcement review ships with the private security package, not with this repo).
 
 Status legend used across the final report: **WORKING** (tested, runs) ·
 **CREDENTIAL-GATED** (code complete, needs the secret to function) · **UNVERIFIED**
@@ -19,7 +20,7 @@ Status legend used across the final report: **WORKING** (tested, runs) ·
 |---|---|---|
 | `MTRX` (iOS app) | private | `Config/PendingCredentials.swift` (all blank by default) |
 | `0pnMatrx` (platform) | public | `openmatrix.config.json` (copy from `.example`) + env vars |
-| `Morpheus-Security-System` (security core) | private | env vars only (never committed) |
+| security core (the private `morpheus_security` package) | private | env vars only (never committed) |
 
 ---
 
@@ -79,7 +80,7 @@ Set under `services.<name>.*` in `openmatrix.config.json`. Each service returns 
 | ccip | `services.ccip.router_address` (Base Sepolia CCIP router) + per-bridge addresses | CCIP/Hyperlane/Wormhole/Axelar/Stargate |
 | auctions | `services.auctions.auction_address` + `.orderbook_address` | Dutch/English/sealed-bid + orderbook |
 
-## 5. Security layer (private `Morpheus-Security-System`) — env only, never committed
+## 5. Security layer (private `morpheus_security` package) — env only, never committed
 
 | Credential | Env var | Unlocks |
 |---|---|---|
@@ -90,13 +91,13 @@ Set under `services.<name>.*` in `openmatrix.config.json`. Each service returns 
 | Twilio auth token | `TWILIO_AUTH_TOKEN` | SMS channel. |
 | Twilio from number | `TWILIO_FROM_NUMBER` | SMS sender. |
 | On-chain sink flag | `OPNMATRX_SECURITY_CHAIN_ENABLED` (default off) | Writes bans/breach as EAS attestations (reuses the chain-core signer). |
-| Gate mode | `OPNMATRX_MORPHEUS_MODE` (default `observe`) | **Leave on `observe`.** ENFORCE only after human review — see `ENFORCEMENT.md`. |
+| Gate mode | `OPNMATRX_MORPHEUS_MODE` (default `observe`) | **Leave on `observe`.** ENFORCE only after human review of the private package's enforcement notes. |
 
 ## 6. Deploy assembly key — co-install public + private
 
 | Credential | Where | Unlocks |
 |---|---|---|
-| Deploy key / fine-grained PAT with read on `Morpheus-Security-System` | deploy CI / image build | `pip install git+ssh://…/Morpheus-Security-System` so the seam binds real enforcement. Absent → platform runs with `SECURITY_BACKEND=noop` (safe, inert). See `Morpheus-Security-System/DEPLOY_ASSEMBLY.md`. |
+| Read access to the private security package | deploy CI / image build | Install `morpheus_security` into the same environment as this platform so the seam binds real enforcement. How that access is granted is kept with the private deployment, not published here. Absent → platform runs with `SECURITY_BACKEND=noop` (inert: nothing is enforced). |
 
 ## 6b. Per-deployment secrets that have a WORKING DEFAULT — set these or they hold
 
@@ -164,8 +165,8 @@ marketplace, deFiLending, …). Blank fields keep that component in honest
 The full chain is wired in code: **app → gateway → agent → dispatcher → security
 gate → tool → chain**. To exercise it end-to-end on Base Sepolia:
 
-1. **Install both layers together** (per `DEPLOY_ASSEMBLY.md`): check out `0pnMatrx`,
-   then `pip install -e .` of `Morpheus-Security-System` alongside it (deploy key).
+1. **Install both layers together** (per the private deployment's assembly notes): check out
+   `0pnMatrx`, then install the private `morpheus_security` package into the same environment.
    Confirm `python -c "import runtime.security as s; print(s.SECURITY_BACKEND)"`
    prints `morpheus_security` (not `noop`).
 2. **Set the env** (sections 1, 3, 5): RPC, chain 84532, deploy key, platform wallet,
@@ -196,4 +197,5 @@ gate → tool → chain**. To exercise it end-to-end on Base Sepolia:
 > Everything above is **CREDENTIAL-GATED / UNVERIFIED** until you complete these
 > steps: the code is connected, but a real end-to-end testnet transaction can only be
 > confirmed after credentials are in and the gateway is deployed. The security-critical
-> paths additionally need the human review in `ENFORCEMENT.md` before ENFORCE is set.
+> paths additionally need the human review of the private package's enforcement notes before
+> ENFORCE is set.

@@ -44,19 +44,15 @@ visible in the run's status again.
 | `ops.sh abis` | ABI doc/source drift audit | none |
 | `ops.sh health [URL]` | `curl` the gateway `/health` | none |
 
-## Deploy (Matrix repo — side-effectful, run deliberately)
+## Deploy (private deployment — side-effectful, run deliberately)
 
-The production stack (gateway + redis + optional Caddy TLS) lives in
-`Matrix/deploy/`. Redis is **required** under `OPNMATRX_ENV=production` (the
-in-memory state backend is refused). The APNs `.p8` is mounted read-only at
-`/run/secrets/apns_key.p8`; the gateway reads its contents into the push
+The production stack (gateway + redis + optional Caddy TLS) is assembled outside
+this repository, in the operator's private deployment, together with the private
+security package. What this gateway requires of that stack is stated here because
+it is this code's behaviour: Redis is **required** under `OPNMATRX_ENV=production`
+(the in-memory state backend is refused), and the APNs `.p8` is mounted read-only
+at `/run/secrets/apns_key.p8`; the gateway reads its contents into the push
 channel at startup, and push stays an honest no-op if the file is absent.
 
-```bash
-# from the parent dir holding 0pnMatrx/ + Morpheus-Security-System/
-docker compose -f Matrix/deploy/docker-compose.prod.yml up --build -d
-docker compose -f Matrix/deploy/docker-compose.prod.yml logs -f gateway
-```
-
 Never commit the real `.env`, `secrets/`, or `openmatrix.config.json` — only
-the `.example` files are tracked (enforced by the Matrix CI).
+the `.example` files are tracked.
