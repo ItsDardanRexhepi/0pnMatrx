@@ -97,7 +97,7 @@ Set under `services.<name>.*` in `openmatrix.config.json`. Each service returns 
 
 | Credential | Where | Unlocks |
 |---|---|---|
-| Read access to the private security package | deploy CI / image build | Install `morpheus_security` into the same environment as this platform so the seam binds real enforcement. How that access is granted is kept with the private deployment, not published here. Absent → platform runs with `SECURITY_BACKEND=noop` (inert: nothing is enforced). |
+| Read access to the private security package | deploy CI / image build | Install `morpheus_security` into the same environment as this platform so the seam binds real enforcement. How that access is granted is kept with the private deployment, not published here. Absent → platform runs with `SECURITY_BACKEND=noop` (the Morpheus gate blocks nothing; only the public per-agent tool boundary, the seam-level refusals and fail-closed owner/OTP apply). |
 
 ## 6b. Per-deployment secrets that have a WORKING DEFAULT — set these or they hold
 
