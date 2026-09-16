@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /Users/dardan/Matrix/tools/name-guard.py \"$CLAUDE_FILE_PATHS\" --apply --quiet"
+          }
+        ]
+      }
+    ]
+  }
+}
