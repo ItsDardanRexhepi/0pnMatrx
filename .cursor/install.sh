@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 0pnMatrx — Cloud Agent install script.
+# The Matrix — Cloud Agent install script.
 #
 # Idempotent: safe to run repeatedly and against cached / partially
 # prepared state. Prepares the Python virtualenv, installs runtime and
@@ -35,11 +35,11 @@ pip install --quiet -r requirements.txt
 pip install --quiet pytest pytest-asyncio pytest-aiohttp
 
 # ── Local development config ─────────────────────────────────────────
-# The gateway requires openmatrix.config.json (gitignored — it normally
+# The gateway requires matrix.config.json (gitignored — it normally
 # holds secrets). Seed it from the committed example on first run and
 # never overwrite an existing, possibly edited, config.
-if [ ! -f "openmatrix.config.json" ]; then
-  cp openmatrix.config.json.example openmatrix.config.json
+if [ ! -f "matrix.config.json" ]; then
+  cp matrix.config.json.example matrix.config.json
 fi
 
-echo "0pnMatrx install complete."
+echo "The Matrix install complete."

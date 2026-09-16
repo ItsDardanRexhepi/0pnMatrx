@@ -47,16 +47,16 @@ visible in the run's status again.
 ## Deploy (Matrix repo — side-effectful, run deliberately)
 
 The production stack (gateway + redis + optional Caddy TLS) lives in
-`Matrix/deploy/`. Redis is **required** under `OPNMATRX_ENV=production` (the
+`Matrix/deploy/`. Redis is **required** under `MATRIX_ENV=production` (the
 in-memory state backend is refused). The APNs `.p8` is mounted read-only at
 `/run/secrets/apns_key.p8`; the gateway reads its contents into the push
 channel at startup, and push stays an honest no-op if the file is absent.
 
 ```bash
-# from the parent dir holding 0pnMatrx/ + Morpheus-Security-System/
+# from the parent dir holding The Matrix/ + Morpheus-Security-System/
 docker compose -f Matrix/deploy/docker-compose.prod.yml up --build -d
 docker compose -f Matrix/deploy/docker-compose.prod.yml logs -f gateway
 ```
 
-Never commit the real `.env`, `secrets/`, or `openmatrix.config.json` — only
+Never commit the real `.env`, `secrets/`, or `matrix.config.json` — only
 the `.example` files are tracked (enforced by the Matrix CI).
