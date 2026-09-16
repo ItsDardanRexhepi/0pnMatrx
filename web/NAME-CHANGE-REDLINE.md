@@ -38,7 +38,7 @@ straightforward substitutions and are listed below for completeness.
 | `<title>` | Terms of Service - 0pnMatrx | Terms of Service - The Matrix |
 | nav logo | 0pnMatrx | The Matrix |
 | §1 scope | "…use of the 0pnMatrx platform…" | "…use of the Matrix platform…" |
-| §1 source link | github.com/ItsDardanRexhepi/0pnMatrx | github.com/ItsDardanRexhepi/the-matrix |
+| §1 source link | github.com/ItsDardanRexhepi/TheMatrix | github.com/ItsDardanRexhepi/TheMatrix |
 | §2 description | "0pnMatrx is an AI agent platform…" | "The Matrix is an AI agent platform…" |
 | License section | "The 0pnMatrx platform software…" | "The Matrix platform software…" |
 | **Trademarks** | see above | **counsel to advise** |
@@ -51,13 +51,13 @@ straightforward substitutions and are listed below for completeness.
 | `<title>` | Privacy Policy - 0pnMatrx | Privacy Policy - The Matrix |
 | nav logo | 0pnMatrx | The Matrix |
 | Opening | "0pnMatrx ("we," "us," …)" | "The Matrix ("we," "us," …)" |
-| Transparency | github.com/ItsDardanRexhepi/0pnMatrx | github.com/ItsDardanRexhepi/the-matrix |
+| Transparency | github.com/ItsDardanRexhepi/TheMatrix | github.com/ItsDardanRexhepi/TheMatrix |
 | On-Premise Storage | "…running the 0pnMatrx gateway" | "…running the Matrix gateway" |
 
 ## Two facts the substitutions depend on
 
 * **The repository URL changes only when the repository is renamed.** Until
-  `github.com/ItsDardanRexhepi/0pnMatrx` is renamed to `the-matrix`, the current
+  `github.com/ItsDardanRexhepi/TheMatrix` is renamed to `the-matrix`, the current
   links are the ones that resolve and the proposed ones 404. Apply the URL rows
   after the rename, not before.
 * **`openmatrix-ai.com` is unchanged throughout.** Both documents name it as the
