@@ -18,7 +18,7 @@ Status legend used across the final report: **WORKING** (tested, runs) ·
 | Repo | Visibility | Config source |
 |---|---|---|
 | `MTRX` (iOS app) | private | `Config/PendingCredentials.swift` (all blank by default) |
-| `0pnMatrx` (platform) | public | `openmatrix.config.json` (copy from `.example`) + env vars |
+| `The Matrix` (platform) | public | `matrix.config.json` (copy from `.example`) + env vars |
 | `Morpheus-Security-System` (security core) | private | env vars only (never committed) |
 
 ---
@@ -27,12 +27,12 @@ Status legend used across the final report: **WORKING** (tested, runs) ·
 
 | Credential | Set in | Unlocks |
 |---|---|---|
-| **Base Sepolia RPC URL** | app `Network.rpcURL` · platform `blockchain.rpc_url` (env `OPENMATRIX_RPC_URL` / `BASE_RPC_URL`) | Every on-chain read/write, chain-id validation, balance reads. Get from Alchemy/Infura/QuickNode. |
-| **Chain ID = 84532** | app `Network.chainID` · platform `blockchain.chain_id` (env `OPENMATRIX_CHAIN_ID`) | Chain validation; must match the RPC. (8453 = Base mainnet — leave on 84532 for testnet.) |
-| **Deploy wallet private key** (funded with Sepolia ETH) | platform `blockchain.private_key` (env `OPENMATRIX_PRIVATE_KEY`) | `scripts/deploy_all.py` — deploying the platform contracts. |
-| **Platform / NeoSafe wallet address** | platform `blockchain.platform_wallet` (env `OPENMATRIX_NEOSAFE_ADDRESS`) | Fee routing + EAS attestation recipient. |
+| **Base Sepolia RPC URL** | app `Network.rpcURL` · platform `blockchain.rpc_url` (env `MATRIX_RPC_URL` / `BASE_RPC_URL`) | Every on-chain read/write, chain-id validation, balance reads. Get from Alchemy/Infura/QuickNode. |
+| **Chain ID = 84532** | app `Network.chainID` · platform `blockchain.chain_id` (env `MATRIX_CHAIN_ID`) | Chain validation; must match the RPC. (8453 = Base mainnet — leave on 84532 for testnet.) |
+| **Deploy wallet private key** (funded with Sepolia ETH) | platform `blockchain.private_key` (env `MATRIX_PRIVATE_KEY`) | `scripts/deploy_all.py` — deploying the platform contracts. |
+| **Platform / NeoSafe wallet address** | platform `blockchain.platform_wallet` (env `MATRIX_NEOSAFE_ADDRESS`) | Fee routing + EAS attestation recipient. |
 | EAS contract | already defaulted to `0x4200000000000000000000000000000000000021` (Base predeploy) | On-chain attestations. No action unless you use a custom registry. |
-| EAS schema UID | platform `blockchain.eas_schema` (env `OPENMATRIX_EAS_SCHEMA_UID`) | The attestation schema. Register once on Base Sepolia. |
+| EAS schema UID | platform `blockchain.eas_schema` (env `MATRIX_EAS_SCHEMA_UID`) | The attestation schema. Register once on Base Sepolia. |
 
 > The app's Secure Enclave signs the **user's** wallet ops; the platform key only
 > signs **platform-level** ops (deploys, sponsorship, attestations). The server never
@@ -52,14 +52,14 @@ Status legend used across the final report: **WORKING** (tested, runs) ·
 
 | Credential | Set in | Unlocks |
 |---|---|---|
-| **Gateway API key** | platform `gateway.api_key` (env `OPENMATRIX_API_KEY` / `MTRX_API_KEY`) | Bearer auth for `/api/v1/*`. The app sends this. |
+| **Gateway API key** | platform `gateway.api_key` (env `MATRIX_API_KEY` / `MTRX_API_KEY`) | Bearer auth for `/api/v1/*`. The app sends this. |
 | **Anthropic API key** | env `ANTHROPIC_API_KEY` | The agents' model (Claude). Required for the ReAct loop to run. |
 | OpenAI API key | env `OPENAI_API_KEY` | Optional fallback model. |
 | App → gateway base URL | app `Backend.gatewayURL` → `https://api.openmatrix-ai.com` | Live service data + OTP endpoints. Blank = app demo data. |
 
 ## 4. The 14 protocol services (Part 2A) — each CREDENTIAL-GATED until its key is set
 
-Set under `services.<name>.*` in `openmatrix.config.json`. Each service returns a
+Set under `services.<name>.*` in `matrix.config.json`. Each service returns a
 `not_deployed` response naming its exact missing key until configured.
 
 | Service | Required key(s) | Unlocks |
@@ -89,8 +89,8 @@ Set under `services.<name>.*` in `openmatrix.config.json`. Each service returns 
 | Twilio account SID | `TWILIO_ACCOUNT_SID` | SMS channel (OTP + breach alerts). |
 | Twilio auth token | `TWILIO_AUTH_TOKEN` | SMS channel. |
 | Twilio from number | `TWILIO_FROM_NUMBER` | SMS sender. |
-| On-chain sink flag | `OPNMATRX_SECURITY_CHAIN_ENABLED` (default off) | Writes bans/breach as EAS attestations (reuses the chain-core signer). |
-| Gate mode | `OPNMATRX_MORPHEUS_MODE` (default `observe`) | **Leave on `observe`.** ENFORCE only after human review — see `ENFORCEMENT.md`. |
+| On-chain sink flag | `MATRIX_SECURITY_CHAIN_ENABLED` (default off) | Writes bans/breach as EAS attestations (reuses the chain-core signer). |
+| Gate mode | `MATRIX_MORPHEUS_MODE` (default `observe`) | **Leave on `observe`.** ENFORCE only after human review — see `ENFORCEMENT.md`. |
 
 ## 6. Deploy assembly key — co-install public + private
 
@@ -108,7 +108,7 @@ one printed in a public repository.
 
 | Credential | Set in | Default if unset | Why it matters |
 |---|---|---|---|
-| **QR verification secret** | platform `supply_chain.qr_secret` | `"0pnmatrx-default-qr-secret"` — **published in this public repo** | The entire secret in the product-authenticity hash (`qr_codes.py:200`, `sha256(product_id\|timestamp\|qr_secret)`). Left unset, **anyone who can read this repository can forge a valid product verification hash for any product id.** Set it to a long random per-deployment value. |
+| **QR verification secret** | platform `supply_chain.qr_secret` | `"the-matrix-default-qr-secret"` — **published in this public repo** | The entire secret in the product-authenticity hash (`qr_codes.py:200`, `sha256(product_id\|timestamp\|qr_secret)`). Left unset, **anyone who can read this repository can forge a valid product verification hash for any product id.** Set it to a long random per-deployment value. |
 
 **DEPLOYMENT PREREQUISITE — ordering matters, as it did for `blockchain.eas_schema`.**
 Set `supply_chain.qr_secret` **before** issuing any product QR code you intend to
@@ -137,15 +137,15 @@ already in circulation.**
 
 | Credential | Where | Unlocks |
 |---|---|---|
-| `auth.apple.bundle_id` (`com.opnmatrx.mtrx`) | `openmatrix.config.json` | **Required** for `POST /api/v1/auth/apple` — the identity-token audience check. Unset → route fails closed (503). |
-| `auth.apple.team_id` + `key_id` + `private_key_p8` (Sign in with Apple key) | `openmatrix.config.json` / secret | Token **revocation** on account deletion (`DELETE /api/v1/auth/account`). App Review requires working deletion once server accounts are live. Unconfigured → local data still deleted, Apple revocation skipped with a WARNING. |
+| `auth.apple.bundle_id` (`com.opnmatrx.mtrx`) | `matrix.config.json` | **Required** for `POST /api/v1/auth/apple` — the identity-token audience check. Unset → route fails closed (503). |
+| `auth.apple.team_id` + `key_id` + `private_key_p8` (Sign in with Apple key) | `matrix.config.json` / secret | Token **revocation** on account deletion (`DELETE /api/v1/auth/account`). App Review requires working deletion once server accounts are live. Unconfigured → local data still deleted, Apple revocation skipped with a WARNING. |
 
 ## 9. IAP verification — monetization server (Phase 3)
 
 | Credential | Where | Unlocks |
 |---|---|---|
-| `iap.bundle_id` (`com.opnmatrx.mtrx`) | `openmatrix.config.json` | **Required** for `POST /api/v1/iap/verify` + `POST /api/v1/iap/asn` — the signed-transaction bundle check. Unset → both routes fail closed (503). |
-| `iap.environment` (`Production` or `Sandbox`) | `openmatrix.config.json` | Optional: restricts accepted payloads to one App Store environment. Unset → both accepted (each row records its environment). |
+| `iap.bundle_id` (`com.opnmatrx.mtrx`) | `matrix.config.json` | **Required** for `POST /api/v1/iap/verify` + `POST /api/v1/iap/asn` — the signed-transaction bundle check. Unset → both routes fail closed (503). |
+| `iap.environment` (`Production` or `Sandbox`) | `matrix.config.json` | Optional: restricts accepted payloads to one App Store environment. Unset → both accepted (each row records its environment). |
 | ASN V2 webhook URL registered in App Store Connect → `https://<gateway>/api/v1/iap/asn` | App Store Connect → App Information | Renewal/expiry/refund/revoke flips reaching the server. No shared secret — the webhook authenticates by its Apple-signed JWS chain (pinned root at `gateway/certs/AppleRootCA-G3.pem`). |
 
 ## 7. Per-component contract addresses (app) — fill AFTER `deploy_all.py`
@@ -164,13 +164,13 @@ marketplace, deFiLending, …). Blank fields keep that component in honest
 The full chain is wired in code: **app → gateway → agent → dispatcher → security
 gate → tool → chain**. To exercise it end-to-end on Base Sepolia:
 
-1. **Install both layers together** (per `DEPLOY_ASSEMBLY.md`): check out `0pnMatrx`,
+1. **Install both layers together** (per `DEPLOY_ASSEMBLY.md`): check out `The Matrix`,
    then `pip install -e .` of `Morpheus-Security-System` alongside it (deploy key).
    Confirm `python -c "import runtime.security as s; print(s.SECURITY_BACKEND)"`
    prints `morpheus_security` (not `noop`).
 2. **Set the env** (sections 1, 3, 5): RPC, chain 84532, deploy key, platform wallet,
-   `ANTHROPIC_API_KEY`, `OPENMATRIX_API_KEY`, owner + Twilio. Keep
-   `OPNMATRX_MORPHEUS_MODE=observe`.
+   `ANTHROPIC_API_KEY`, `MATRIX_API_KEY`, owner + Twilio. Keep
+   `MATRIX_MORPHEUS_MODE=observe`.
 3. **Deploy the contracts:** `python -m scripts.deploy_all` (or `python scripts/deploy_all.py`).
    It compiles, deploys to Base Sepolia, attests each via EAS, and writes
    `deployment_manifest.json`. Copy addresses into `services.*` + the app's
