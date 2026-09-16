@@ -9,6 +9,15 @@
             "command": "python3 /Users/dardan/Matrix/tools/name-guard.py \"$CLAUDE_FILE_PATHS\" --apply --quiet"
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "case \"$CLAUDE_FILE_PATHS\" in *gateway/*.py|*service_routes*|*session_routes*|*bridge.py*) cd \"$CLAUDE_PROJECT_DIR\" 2>/dev/null && PYTHONPATH=. python3 scripts/generate_route_table.py >/dev/null 2>&1 ;; esac; true"
+          }
+        ]
       }
     ]
   }
